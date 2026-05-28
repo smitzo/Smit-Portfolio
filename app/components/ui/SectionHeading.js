@@ -1,17 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "../../lib/cn";
 import { fadeUp } from "../motion-presets";
 
 export function SectionHeading({ kicker, title, children, id }) {
   return (
-    <div className="section-heading split-heading">
+    <div className="mb-[34px] grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] items-start gap-10 max-[980px]:grid-cols-1">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
-        {kicker ? <p className="section-kicker">{kicker}</p> : null}
+        {kicker ? <p className="text-[0.96rem] font-black text-sky-300">{kicker}</p> : null}
         <h2 id={id}>{title}</h2>
       </motion.div>
       {children ? (
-        <motion.p variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
+        <motion.p
+          className={cn("text-[var(--muted)]", "[html[data-theme=light]_&]:text-[#5b6874]")}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {children}
         </motion.p>
       ) : null}
