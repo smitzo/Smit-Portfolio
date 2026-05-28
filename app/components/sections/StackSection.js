@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import { SectionHeading } from "../SectionHeading";
 import { cardHover, fadeUp, staggerContainer } from "../motion-presets";
+import styles from "./StackSection.module.css";
 
 export function StackSection({ skills }) {
   return (
-    <section className="section page-shell" id="stack" aria-labelledby="stack-title">
+    <section className={`${styles.section} page-shell`} id="stack" aria-labelledby="stack-title">
       <SectionHeading title="Tech Stack" id="stack-title"/>
       <motion.div
         className="skills-grid"
