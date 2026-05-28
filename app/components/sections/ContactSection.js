@@ -30,7 +30,7 @@ export function ContactSection({ profile }) {
           </a>
            <a className="button secondary" href={profile.github} target="_blank" rel="noreferrer">
             <GithubLogo/>
-            Github
+            GitHub
           </a>
           <a className="button secondary" href={profile.twitter} target="_blank" rel="noreferrer">
             <XLogo />

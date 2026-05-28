@@ -22,7 +22,7 @@ export const profile = {
 };
 
 export const navItems = [
-  ["Profile", "#profile"],
+  ["Home", "#top"],
   ["Timeline", "#timeline"],
   ["Projects", "#timeline-projects"],
   ["Stack", "#stack"],
@@ -60,24 +60,23 @@ export const projects = [
     href: "https://clipboard-theta-eight.vercel.app",
     githubHref: "https://github.com/smitzo/clipboard",
     action: "Live link",
-    summary: "a secure online clipboard for moving text between devices.",
+    summary: "A secure online clipboard for moving text between devices.",
     description:
-      " A user pastes text, creates a temporary room, and shares the generated room ID or QR code with another device. The receiving device joins the room, reads the text, copies it, updates it, or deletes the room when finished.",
-    tags: ["Node JS", "React JS", "Websockets"]
+      "A user pastes text, creates a temporary room, and shares the generated room ID or QR code with another device. The receiving device joins the room, reads the text, copies it, updates it, or deletes the room when finished.",
+    tags: ["Node.js", "React", "WebSockets"]
   },
   {
     title: "Employee Data Analytics App",
     eyebrow: "Delivered",
     status: "Deployed",
     state: "completed",
-    githubHref: "https://github.com/smitzo/clipboard",
     href: "https://employee-data-analytics-app.vercel.app/",
     githubHref: "https://github.com/smitzo/Employee-Data-Analytics-App",
     action: "View GitHub",
     summary: "Employee Performance analytics with filters, drilldowns, and reporting views.",
     description:
       "Analytics app for reviewing employee performance data with filtering, drill-down analysis, and clear reporting flows for structured spreadsheets.",
-    tags: ["Django", "Next JS", "Postgres", "Sqlite", "Python"]
+    tags: ["Django", "Next.js", "Postgres", "SQLite", "Python"]
   },
   {
     title: "Claim Processing Pipeline",
@@ -85,7 +84,7 @@ export const projects = [
     status: "Delivered",
     state: "completed",
     href: "https://github.com/smitzo/Document-Processor",
-    action: "View Github",
+    action: "View GitHub",
     summary: "Medical claim PDFs are classified, routed through extraction steps, and merged into one JSON response.",
     description:
       "Service for medical claim PDF processing. It classifies each page into document types, sends only relevant pages through dedicated extraction steps, and aggregates the result into a single API response.",
@@ -96,12 +95,12 @@ export const projects = [
     eyebrow: "Manufacturing analytics",
     status: "Delivered",
     state: "completed",
-     href: "https://github.com/smitzo/Paint-Cost-Analysis-Tool",
+    href: "https://github.com/smitzo/Paint-Cost-Analysis-Tool",
     action: "View GitHub",
     summary: "Manufacturing profitability analysis from Excel sheets for paint cost and margin visibility.",
     description:
       "Built for a manufacturing firm to understand paint profitability from Excel sheets, compare costs, and make margin visibility easier for operators.",
-    tags: ["Python", "Pandas", "Pypxl", "Tkinter"]
+    tags: ["Python", "Pandas", "openpyxl", "Tkinter"]
   }
 ];
 
@@ -145,7 +144,7 @@ export const timeline = [
     tone: "violet",
     visual: "workflow",
     points: [
-      "Integrated Helpdesk, Sales, and Invoicing workflows for invociing solved helpdesk tickets",
+      "Integrated Helpdesk, Sales, and Invoicing workflows for invoicing solved helpdesk tickets",
       "Built Odoo customizations for accounting and invoicing use cases",
       "Implemented GST localization flows for Indian users",
       "Contributed to testing, issue triage, and product fixes"
@@ -191,7 +190,7 @@ export const timeline = [
       "Mentored under ICREATE Idea Accelerator - an incubator for pre-seed startups",
       "Represented CVM university at Inter-university Volleyball tournament"
     ],
-    coursework: ["Operating Systems", "Data structures & Algorithms", "Computer Networks", "Databases", "Natural Language Processing", "Big Data Analytics", "ML Fundamentals", "IoT"]
+    coursework: ["Operating Systems", "Data Structures & Algorithms", "Computer Networks", "Databases", "Natural Language Processing", "Big Data Analytics", "ML Fundamentals", "IoT"]
   }
 ];
 
@@ -199,7 +198,7 @@ export const skills = [
   {
     title: "Backend",
     icon: Code2,
-    items: ["Python", "Node.js", "FastAPI", "REST APIs", "Flask", "Django", "Pydantic", "SQL Alchemy"]
+    items: ["Python", "Node.js", "FastAPI", "REST APIs", "Flask", "Django", "Pydantic", "SQLAlchemy"]
   },
   {
     title: "Data Layer",
@@ -214,7 +213,7 @@ export const skills = [
   {
     title: "AI",
     icon: Bot,
-    items: ["Langchain", "LangGraph", "RAG", "Prompt Engineering"]
+    items: ["LangChain", "LangGraph", "RAG", "Prompt Engineering"]
   },
   {
     title: "Frontend",
