@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionHeading } from "../SectionHeading";
+import { SectionHeading } from "../ui/SectionHeading";
 import { cardHover, fadeUp, staggerContainer } from "../motion-presets";
 import styles from "./StackSection.module.css";
 

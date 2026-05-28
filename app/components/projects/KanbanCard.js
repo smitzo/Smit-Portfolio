@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ExternalLink } from "lucide-react";
-import { GithubLogo } from "./BrandLogos";
-import { cardHover, fadeUp } from "./motion-presets";
+import { GithubLogo } from "../ui/BrandLogos";
+import { cardHover, fadeUp } from "../motion-presets";
 
 export function KanbanCard({ item, index = 0 }) {
   const [open, setOpen] = useState(false);

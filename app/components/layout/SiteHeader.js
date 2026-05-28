@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ThemeToggle } from "./ThemeToggle";
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 export function SiteHeader({ navItems }) {
   return (

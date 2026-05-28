@@ -1,4 +1,4 @@
-import { PortfolioPage } from "./components/PortfolioPage";
+import { PortfolioPage } from "./components/layout/PortfolioPage";
 
 export default function Home() {
   return <PortfolioPage />;

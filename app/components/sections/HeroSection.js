@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, MapPin, Sparkles } from "lucide-react";
-import { HeroSystemGraphic } from "../HeroSystemGraphic";
+import { HeroSystemGraphic } from "../visuals/HeroSystemGraphic";
 import { fadeUp, heroCopy } from "../motion-presets";
 
 export function HeroSection({ profile }) {
