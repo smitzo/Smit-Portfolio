@@ -29,13 +29,12 @@ export function KanbanCard({ item, index = 0 }) {
     >
       <div className="kanban-card-button">
         <button
-          className="kanban-card-hitarea"
+          className="kanban-card-main"
           type="button"
           onClick={toggleOpen}
           aria-expanded={open}
           aria-label={`${open ? "Collapse" : "Expand"} ${item.title}`}
-        />
-        <span className="kanban-card-main">
+        >
           <span className="kanban-card-topline">
             <span className={`status-dot ${item.state}`} aria-hidden="true" />
             {item.status || item.eyebrow}
@@ -47,31 +46,37 @@ export function KanbanCard({ item, index = 0 }) {
               </span>
             ) : null}
             <span className="kanban-card-title">{item.title}</span>
-            {hasProjectLinks ? (
-              <span className="project-title-links" aria-label={`${item.title} links`}>
-                {githubHref ? (
-                  <a className="project-title-link" href={githubHref} target="_blank" rel="noreferrer" aria-label={`${item.title} GitHub`}>
-                    <GithubLogo size={16} />
-                  </a>
-                ) : null}
-                {liveHref ? (
-                  <a className="project-title-link live" href={liveHref} target="_blank" rel="noreferrer" aria-label={`${item.title} live site`}>
-                    <ExternalLink size={16} aria-hidden="true" />
-                  </a>
-                ) : null}
-              </span>
-            ) : null}
           </span>
           <span className="kanban-card-meta">{item.meta || item.years || item.eyebrow}</span>
           <span className="kanban-card-summary">{item.summary}</span>
-        </span>
-        <motion.span
-          className="summary-icon kanban-toggle-icon"
-          animate={{ rotate: open ? 180 : 0, scale: open ? 1.04 : 1 }}
-          aria-hidden="true"
-        >
-          <ChevronDown size={18} />
-        </motion.span>
+        </button>
+        <div className="kanban-card-actions">
+          {hasProjectLinks ? (
+            <span className="project-title-links" aria-label={`${item.title} links`}>
+              {githubHref ? (
+                <a className="project-title-link" href={githubHref} target="_blank" rel="noreferrer" aria-label={`${item.title} GitHub`}>
+                  <GithubLogo size={16} />
+                </a>
+              ) : null}
+              {liveHref ? (
+                <a className="project-title-link live" href={liveHref} target="_blank" rel="noreferrer" aria-label={`${item.title} live site`}>
+                  <ExternalLink size={16} aria-hidden="true" />
+                </a>
+              ) : null}
+            </span>
+          ) : null}
+          <button
+            className="summary-icon kanban-toggle-icon"
+            type="button"
+            onClick={toggleOpen}
+            aria-expanded={open}
+            aria-label={`${open ? "Collapse" : "Expand"} ${item.title}`}
+          >
+            <motion.span animate={{ rotate: open ? 180 : 0, scale: open ? 1.04 : 1 }} aria-hidden="true">
+              <ChevronDown size={18} />
+            </motion.span>
+          </button>
+        </div>
       </div>
 
       <AnimatePresence initial={false}>

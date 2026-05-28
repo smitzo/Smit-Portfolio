@@ -2517,10 +2517,19 @@ html[data-theme="light"] .project-card::before {
   width: 100%;
   min-height: 154px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 42px;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px;
   align-items: start;
   padding: 16px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.kanban-card-main {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
   border: 0;
   background: transparent;
   color: inherit;
@@ -2528,27 +2537,10 @@ html[data-theme="light"] .project-card::before {
   text-align: left;
 }
 
-.kanban-card-hitarea {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.kanban-card-hitarea:focus-visible {
+.kanban-card-main:focus-visible {
+  border-radius: 8px;
   outline: 2px solid rgba(125, 211, 252, 0.46);
-  outline-offset: -3px;
-}
-
-.kanban-card-main {
-  position: relative;
-  z-index: 3;
-  min-width: 0;
-  display: grid;
-  gap: 8px;
-  pointer-events: none;
+  outline-offset: 4px;
 }
 
 .kanban-card-topline {
@@ -2602,7 +2594,6 @@ html[data-theme="light"] .project-card::before {
   align-items: center;
   gap: 6px;
   flex: 0 0 auto;
-  pointer-events: auto;
 }
 
 .project-title-link {
@@ -2663,11 +2654,26 @@ html[data-theme="light"] .project-card::before {
 }
 
 .kanban-toggle-icon {
-  position: relative;
-  z-index: 3;
   width: 38px;
   height: 38px;
-  pointer-events: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.kanban-toggle-icon span {
+  display: grid;
+  place-items: center;
+}
+
+.kanban-toggle-icon:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.46);
+  outline-offset: 3px;
+}
+
+.kanban-card-actions {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
 }
 
 .kanban-details {
