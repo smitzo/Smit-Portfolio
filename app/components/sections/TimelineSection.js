@@ -8,6 +8,7 @@ import { KanbanBoard } from "../KanbanBoard";
 import { SectionHeading } from "../SectionHeading";
 import { TimelineAccent } from "../TimelineAccent";
 import { fadeUp } from "../motion-presets";
+import styles from "./TimelineSection.module.css";
 
 const projectColumns = [
   { id: "progress", title: "In Progress", kicker: "Active", states: ["progress"] },
@@ -18,7 +19,7 @@ export function TimelineSection({ timeline, projects }) {
   const timelineRef = useRef(null);
 
   return (
-    <section className="section timeline-section" id="timeline" aria-labelledby="timeline-title">
+    <section className={`${styles.section} ${styles.timelineSection}`} id="timeline" aria-labelledby="timeline-title">
       <div className="page-shell">
         <SectionHeading title="Growth Timeline" id="timeline-title"/>
 
@@ -99,7 +100,7 @@ export function TimelineSection({ timeline, projects }) {
           })}
         </div>
 
-        <div className="timeline-projects" id="timeline-projects">
+        <div className={styles.projects} id="timeline-projects">
           <SectionHeading title="Project Board" id="projects-title"/>
           <KanbanBoard title="Project tasks" columns={projectColumns} items={projects} />
         </div>

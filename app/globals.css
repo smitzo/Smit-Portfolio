@@ -2131,11 +2131,6 @@ html[data-theme="light"] .hero-image-sheen {
   box-shadow: 0 0 24px var(--purple);
 }
 
-.section {
-  padding: 96px 0;
-  scroll-margin-top: 92px;
-}
-
 .intro-section,
 .split-heading,
 .contact-grid {
@@ -2786,32 +2781,6 @@ html[data-theme="light"] .timeline-highlights li {
 
 html[data-theme="light"] .contact-section {
   background: rgba(238, 243, 239, 0.82);
-}
-
-.timeline-section {
-  position: relative;
-}
-
-.timeline-section::before {
-  content: "";
-  position: absolute;
-  top: 80px;
-  right: -44px;
-  bottom: 80px;
-  width: 180px;
-  background:
-    linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.14), transparent),
-    repeating-linear-gradient(180deg, rgba(125, 211, 252, 0.16) 0 2px, transparent 2px 18px);
-  opacity: 0.36;
-  pointer-events: none;
-  transform: skewY(-12deg);
-  animation: sideSignal 12s linear infinite;
-}
-
-.timeline-projects {
-  margin-top: 96px;
-  padding-top: 84px;
-  border-top: 1px solid var(--line);
 }
 
 .timeline {
@@ -3998,10 +3967,6 @@ html[data-theme="light"] .coursework-list li {
     grid-template-columns: 1fr;
   }
 
-  .section {
-    padding: 58px 0;
-  }
-
   .project-summary-button {
     min-height: 0;
     grid-template-columns: minmax(0, 1fr) 42px;
@@ -4095,10 +4060,6 @@ html[data-theme="light"] .coursework-list li {
     display: none;
   }
 
-  .timeline-projects {
-    margin-top: 62px;
-    padding-top: 54px;
-  }
 }
 
 @media (max-width: 380px) {

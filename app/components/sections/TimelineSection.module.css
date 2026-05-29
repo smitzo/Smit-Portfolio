@@ -1,0 +1,51 @@
+.section {
+  padding: 96px 0;
+  scroll-margin-top: 92px;
+}
+
+.timelineSection {
+  position: relative;
+}
+
+.timelineSection::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  right: -44px;
+  bottom: 80px;
+  width: 180px;
+  background:
+    linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.14), transparent),
+    repeating-linear-gradient(180deg, rgba(125, 211, 252, 0.16) 0 2px, transparent 2px 18px);
+  opacity: 0.36;
+  pointer-events: none;
+  transform: skewY(-12deg);
+  animation: sideSignal 12s linear infinite;
+}
+
+.projects {
+  margin-top: 44px;
+  padding-top: 38px;
+  border-top: 1px solid var(--line);
+}
+
+@keyframes sideSignal {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 0 0, 0 72px;
+  }
+}
+
+@media (max-width: 680px) {
+  .section {
+    padding: 58px 0;
+  }
+
+  .projects {
+    margin-top: 34px;
+    padding-top: 30px;
+  }
+}
