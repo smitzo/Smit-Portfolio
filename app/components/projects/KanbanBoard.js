@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { KanbanCard } from "./KanbanCard";
-import { fadeUp } from "./motion-presets";
+import { fadeUp } from "../motion-presets";
 
 export function KanbanBoard({ title, columns, items }) {
   return (

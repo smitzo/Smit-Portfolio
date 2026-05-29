@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { GithubLogo } from "../BrandLogos";
-import { KanbanBoard } from "../KanbanBoard";
-import { SectionHeading } from "../SectionHeading";
-import { TimelineAccent } from "../TimelineAccent";
+import { KanbanBoard } from "../projects/KanbanBoard";
+import { GithubLogo } from "../ui/BrandLogos";
+import { SectionHeading } from "../ui/SectionHeading";
+import { TimelineAccent } from "../visuals/TimelineAccent";
 import { fadeUp } from "../motion-presets";
 import styles from "./TimelineSection.module.css";
 

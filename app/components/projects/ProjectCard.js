@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
-import { cardHover, fadeUp } from "./motion-presets";
+import { cardHover, fadeUp } from "../motion-presets";
 
 export function ProjectCard({ project, index }) {
   const [open, setOpen] = useState(false);

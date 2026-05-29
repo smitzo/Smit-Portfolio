@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeUp } from "./motion-presets";
+import { fadeUp } from "../motion-presets";
 
 export function SectionHeading({ kicker, title, children, id }) {
   return (

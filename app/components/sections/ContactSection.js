@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
-import { GithubLogo, LinkedInLogo, XLogo } from "../BrandLogos";
+import { GithubLogo, LinkedInLogo, XLogo } from "../ui/BrandLogos";
 import { fadeUp } from "../motion-presets";
 
 export function ContactSection({ profile }) {
