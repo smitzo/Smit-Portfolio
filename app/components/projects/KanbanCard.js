@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ExternalLink } from "lucide-react";
+import { cn } from "../../lib/cn";
 import { GithubLogo } from "../ui/BrandLogos";
 import { cardHover, fadeUp } from "../motion-presets";
 
@@ -18,7 +19,14 @@ export function KanbanCard({ item, index = 0 }) {
 
   return (
     <motion.article
-      className={`kanban-card ${open ? "is-open" : ""}`}
+      className={cn(
+        "relative overflow-hidden rounded-lg border border-[var(--line)] bg-[radial-gradient(circle_at_10%_0%,rgba(56,189,248,0.1),transparent_36%),rgba(15,23,42,0.62)] shadow-[0_14px_42px_rgba(0,0,0,0.16)]",
+        "before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(120deg,transparent_46%,rgba(56,189,248,0.12),rgba(139,92,246,0.1))] before:opacity-0 before:transition-opacity before:duration-200 hover:before:opacity-100",
+        "after:pointer-events-none after:absolute after:inset-[-60%] after:z-0 after:bg-[radial-gradient(circle_at_18%_26%,rgba(34,211,238,0.52),transparent_24%),radial-gradient(circle_at_72%_28%,rgba(56,189,248,0.42),transparent_23%),radial-gradient(circle_at_62%_76%,rgba(139,92,246,0.38),transparent_24%),conic-gradient(from_90deg,transparent,rgba(56,189,248,0.3),transparent,rgba(139,92,246,0.36),transparent)] after:opacity-0 after:transition-[opacity,transform] after:duration-500 after:[transform:translate3d(-8%,8%,0)_scale(0.82)_rotate(0deg)] hover:after:opacity-60 hover:after:[animation:fluidHover_5.5s_ease-in-out_infinite_alternate] hover:after:[transform:translate3d(5%,-4%,0)_scale(1.06)_rotate(16deg)]",
+        "[html[data-theme=light]_&]:border-[#2d46591a] [html[data-theme=light]_&]:bg-[linear-gradient(135deg,rgba(42,111,128,0.045),transparent_42%),rgba(250,252,248,0.84)] [html[data-theme=light]_&]:shadow-[var(--shadow)]",
+        "[html[data-theme=light]_&]:after:bg-[radial-gradient(circle_at_18%_26%,rgba(42,111,128,0.38),transparent_24%),radial-gradient(circle_at_72%_28%,rgba(61,111,182,0.34),transparent_23%),radial-gradient(circle_at_62%_76%,rgba(118,96,184,0.3),transparent_24%),conic-gradient(from_90deg,transparent,rgba(42,111,128,0.24),transparent,rgba(118,96,184,0.28),transparent)]",
+        open && "before:opacity-100 after:opacity-60 after:[animation:fluidHover_5.5s_ease-in-out_infinite_alternate] after:[transform:translate3d(5%,-4%,0)_scale(1.06)_rotate(16deg)]"
+      )}
       variants={fadeUp}
       initial="hidden"
       whileInView="show"
@@ -27,52 +35,52 @@ export function KanbanCard({ item, index = 0 }) {
       transition={{ duration: 0.42, delay: index * 0.035 }}
       layout
     >
-      <div className="kanban-card-button">
+      <div className="relative z-[1] grid min-h-[154px] w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-4 bg-transparent p-4 text-left text-inherit max-[680px]:min-h-0 max-[680px]:grid-cols-[minmax(0,1fr)_38px] max-[680px]:p-3.5">
         <button
-          className="kanban-card-main"
+          className="grid min-w-0 cursor-pointer gap-2 border-0 bg-transparent text-left text-inherit focus-visible:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300/50"
           type="button"
           onClick={toggleOpen}
           aria-expanded={open}
           aria-label={`${open ? "Collapse" : "Expand"} ${item.title}`}
         >
-          <span className="kanban-card-topline">
+          <span className="inline-flex min-h-7 w-fit max-w-full items-center gap-[7px] overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border border-sky-300/25 bg-sky-500/10 px-2 py-[3px] text-[0.78rem] font-[850] text-sky-300 [html[data-theme=light]_&]:border-[#2a6f803d] [html[data-theme=light]_&]:bg-[#2a6f801a] [html[data-theme=light]_&]:text-[#287f92]">
             <span className={`status-dot ${item.state}`} aria-hidden="true" />
             {item.status || item.eyebrow}
           </span>
-          <span className="kanban-card-title-row">
+          <span className="flex min-w-0 items-center gap-2">
             {Icon ? (
-              <span className="kanban-card-icon" aria-hidden="true">
+              <span className="grid size-[30px] shrink-0 place-items-center rounded-lg border border-sky-300/25 bg-sky-500/10 text-sky-300 [html[data-theme=light]_&]:border-[#2a6f803d] [html[data-theme=light]_&]:bg-[#2a6f801a] [html[data-theme=light]_&]:text-[#287f92]" aria-hidden="true">
                 <Icon size={17} />
               </span>
             ) : null}
-            <span className="kanban-card-title">{item.title}</span>
+            <span className="min-w-0 text-[1.08rem] font-black leading-[1.18] text-[var(--text)] max-[680px]:text-base">{item.title}</span>
           </span>
-          <span className="kanban-card-meta">{item.meta || item.years || item.eyebrow}</span>
-          <span className="kanban-card-summary">{item.summary}</span>
+          <span className="overflow-hidden text-ellipsis whitespace-nowrap text-[0.84rem] font-[820] text-violet-300 [html[data-theme=light]_&]:text-[#7660b8]">{item.meta || item.years || item.eyebrow}</span>
+          <span className="line-clamp-2 overflow-hidden text-[0.96rem] font-[650] text-[var(--text-soft)] [html[data-theme=light]_&]:text-[#5b6874]">{item.summary}</span>
         </button>
-        <div className="kanban-card-actions">
+        <div className="grid justify-items-end gap-2">
           {hasProjectLinks ? (
-            <span className="project-title-links" aria-label={`${item.title} links`}>
+            <span className="inline-flex shrink-0 items-center gap-1.5" aria-label={`${item.title} links`}>
               {githubHref ? (
-                <a className="project-title-link" href={githubHref} target="_blank" rel="noreferrer" aria-label={`${item.title} GitHub`}>
+                <a className="inline-grid size-7 place-items-center rounded-lg border border-sky-300/35 bg-sky-500/15 text-sky-200 transition-[transform,border-color,background,color] duration-150 hover:-translate-y-px hover:border-sky-300/60 hover:bg-sky-500/20 hover:text-slate-50 focus-visible:-translate-y-px focus-visible:border-sky-300/60 focus-visible:bg-sky-500/20 focus-visible:text-slate-50 focus-visible:outline-none [html[data-theme=light]_&]:border-[#2a6f8038] [html[data-theme=light]_&]:bg-[#2a6f8014] [html[data-theme=light]_&]:text-[#287f92] [html[data-theme=light]_&]:hover:border-[#2a6f8057] [html[data-theme=light]_&]:hover:bg-[#2a6f8021] [html[data-theme=light]_&]:hover:text-[#172033]" href={githubHref} target="_blank" rel="noreferrer" aria-label={`${item.title} GitHub`}>
                   <GithubLogo size={16} />
                 </a>
               ) : null}
               {liveHref ? (
-                <a className="project-title-link live" href={liveHref} target="_blank" rel="noreferrer" aria-label={`${item.title} live site`}>
+                <a className="inline-grid size-7 place-items-center rounded-lg border border-emerald-300/35 bg-emerald-400/10 text-emerald-200 transition-[transform,border-color,background,color] duration-150 hover:-translate-y-px hover:border-emerald-300/60 hover:bg-emerald-400/20 hover:text-emerald-50 focus-visible:-translate-y-px focus-visible:border-emerald-300/60 focus-visible:bg-emerald-400/20 focus-visible:text-emerald-50 focus-visible:outline-none [html[data-theme=light]_&]:border-[#2f8a6338] [html[data-theme=light]_&]:bg-[#2f8a6314] [html[data-theme=light]_&]:text-[#2f8a63] [html[data-theme=light]_&]:hover:border-[#2f8a6357] [html[data-theme=light]_&]:hover:bg-[#2f8a6321] [html[data-theme=light]_&]:hover:text-[#172033]" href={liveHref} target="_blank" rel="noreferrer" aria-label={`${item.title} live site`}>
                   <ExternalLink size={16} aria-hidden="true" />
                 </a>
               ) : null}
             </span>
           ) : null}
           <button
-            className="summary-icon kanban-toggle-icon"
+            className="summary-icon grid size-[38px] cursor-pointer place-items-center p-0 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-sky-300/50 max-[680px]:size-[42px]"
             type="button"
             onClick={toggleOpen}
             aria-expanded={open}
             aria-label={`${open ? "Collapse" : "Expand"} ${item.title}`}
           >
-            <motion.span animate={{ rotate: open ? 180 : 0, scale: open ? 1.04 : 1 }} aria-hidden="true">
+            <motion.span className="grid place-items-center" animate={{ rotate: open ? 180 : 0, scale: open ? 1.04 : 1 }} aria-hidden="true">
               <ChevronDown size={18} />
             </motion.span>
           </button>
@@ -82,7 +90,7 @@ export function KanbanCard({ item, index = 0 }) {
       <AnimatePresence initial={false}>
         {open ? (
           <motion.div
-            className="kanban-details"
+            className="relative z-[1] overflow-hidden px-4 pb-4 max-[680px]:px-3.5 max-[680px]:pb-3.5"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -94,7 +102,7 @@ export function KanbanCard({ item, index = 0 }) {
               exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.22 }}
             >
-              {item.description ? <p>{item.description}</p> : null}
+              {item.description ? <p className="mb-3.5 font-[650] text-slate-200 [html[data-theme=light]_&]:text-[#5b6874]">{item.description}</p> : null}
               {detailTags.length ? (
                 <ul className="tag-list" aria-label={`${item.title} ${item.tags ? "tech stack" : "details"}`}>
                   {detailTags.map((tag) => (
