@@ -22,8 +22,8 @@ export function HeroSection({ profile }) {
       </motion.div>
       <motion.a
         className="hero-scroll-cue"
-        href="#profile"
-        aria-label="Scroll to profile"
+        href="#timeline"
+        aria-label="Scroll to timeline"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: "easeOut", delay: 0.95 }}
@@ -46,8 +46,8 @@ export function HeroSection({ profile }) {
             <span>Joshi</span>
           </motion.h1>
           <motion.p className="hero-copy" variants={fadeUp}>
-            {profile.role} in love with building Backends, Automating Financial workflows,
-            Creating/Integrating APIs and currently exploring Agentic AI.
+            {profile.role} focused on building backends, automating financial workflows,
+            creating and integrating APIs, and exploring agentic AI.
           </motion.p>
           <motion.div className="contact-row" aria-label="Profile links" variants={fadeUp}>
             <span>
