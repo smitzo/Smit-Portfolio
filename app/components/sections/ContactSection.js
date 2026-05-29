@@ -17,14 +17,14 @@ export function ContactSection({ profile }) {
   return (
     <section className="border-t border-[var(--line)] bg-[rgba(2,6,23,0.74)] py-[78px] [html[data-theme=light]_&]:bg-[rgba(238,243,239,0.82)]" id="contact" aria-labelledby="contact-title">
       <motion.div
-        className="page-shell grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] items-start gap-10 max-[980px]:grid-cols-1"
+        className="mx-auto grid w-[min(1480px,calc(100%_-_56px))] grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] items-start gap-10 max-[980px]:w-[min(100%_-_28px,920px)] max-[980px]:grid-cols-1"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.28 }}
       >
         <div>
-          <h2 id="contact-title">Let&apos;s build something accurate, useful, and production-ready.</h2>
+          <h2 className="mt-2.5 max-w-[860px] text-[3.35rem] font-[930] leading-none tracking-normal max-[980px]:text-[2.62rem] max-[680px]:text-[2.12rem]" id="contact-title">Let&apos;s build something accurate, useful, and production-ready.</h2>
         </div>
         <div className="flex flex-wrap justify-end gap-3 max-[980px]:justify-start">
           <a className={contactLinkClass} href={`mailto:${profile.email}`}>

@@ -4,11 +4,10 @@ import { motion } from "framer-motion";
 import { cn } from "../../lib/cn";
 import { SectionHeading } from "../ui/SectionHeading";
 import { cardHover, fadeUp, staggerContainer } from "../motion-presets";
-import styles from "./StackSection.module.css";
 
 export function StackSection({ skills }) {
   return (
-    <section className={`${styles.section} page-shell`} id="stack" aria-labelledby="stack-title">
+    <section className="mx-auto w-[min(1480px,calc(100%_-_56px))] scroll-mt-[92px] py-[46px] pb-24 max-[980px]:w-[min(100%_-_28px,920px)] max-[680px]:py-[34px] max-[680px]:pb-[58px]" id="stack" aria-labelledby="stack-title">
       <SectionHeading title="Tech Stack" id="stack-title"/>
       <motion.div
         className="grid grid-cols-4 items-stretch gap-4 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1"
