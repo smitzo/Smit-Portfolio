@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/cn";
 import { KanbanBoard } from "../projects/KanbanBoard";
-import { GithubLogo, TimelineLogo } from "../ui/BrandLogos";
+import { GithubLogo } from "../ui/BrandLogos";
 import { SectionHeading } from "../ui/SectionHeading";
 import { TimelineAccent } from "../visuals/TimelineAccent";
 import { fadeUp } from "../motion-presets";
@@ -67,18 +67,13 @@ export function TimelineSection({ timeline, projects }) {
                     className={cn(
                       "relative z-[6] grid size-[72px] place-items-center rounded-lg border border-white/20 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.24),transparent_30%),linear-gradient(135deg,var(--violet),var(--blue)_58%,var(--cyan))] text-white shadow-[0_18px_42px_rgba(34,211,238,0.18),inset_0_1px_0_rgba(255,255,255,0.2)] [html[data-theme=light]_&]:shadow-[0_18px_42px_rgba(61,111,182,0.14),inset_0_1px_0_rgba(255,255,255,0.24)] max-[680px]:size-16",
                       item.tone === "cyan" && "bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.24),transparent_30%),linear-gradient(135deg,var(--cyan),var(--blue))]",
-                      item.tone === "blue" && "bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.24),transparent_30%),linear-gradient(135deg,#2563eb,var(--violet))]",
-                      item.logo && "border-sky-200/30 bg-white p-2 text-slate-900 shadow-[0_18px_42px_rgba(34,211,238,0.16),inset_0_1px_0_rgba(255,255,255,0.85)] [html[data-theme=light]_&]:border-[#2d46591f] [html[data-theme=light]_&]:bg-white"
+                      item.tone === "blue" && "bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.24),transparent_30%),linear-gradient(135deg,#2563eb,var(--violet))]"
                     )}
                     whileInView={{ scale: [0.9, 1.06, 1] }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: index * 0.07 }}
                   >
-                    {item.logo ? (
-                      <TimelineLogo src={item.logo.src} alt={item.logo.alt} width={item.logo.width} height={item.logo.height} className={item.logo.className} />
-                    ) : (
-                      <Icon className="relative z-[1] max-[680px]:size-[25px]" size={item.iconSize || 28} strokeWidth={2.1} aria-hidden="true" />
-                    )}
+                    <Icon className="relative z-[1] max-[680px]:size-[25px]" size={item.iconSize || 28} strokeWidth={2.1} aria-hidden="true" />
                   </motion.div>
                 </div>
                 <div className="relative z-[1] pr-32 max-[680px]:col-start-2 max-[680px]:pr-0">

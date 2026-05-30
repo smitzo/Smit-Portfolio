@@ -123,13 +123,6 @@ export const timeline = [
     description:
       "Current R&D engineering role focused on correctness-heavy accounting and invoicing backend systems, including API integrations, business logic, validation, and compliance workflows.",
     icon: BriefcaseBusiness,
-    logo: {
-      src: "/brand/odoo.png",
-      alt: "Odoo",
-      width: 58,
-      height: 35,
-      className: "w-[58px] max-[680px]:w-[52px]"
-    },
     tone: "purple",
     visual: "api",
     points: contributionBullets,
@@ -148,13 +141,6 @@ export const timeline = [
     description:
       "R&D internship building and testing Odoo accounting and invoicing customizations while contributing to integrated product workflows.",
     icon: Building2,
-    logo: {
-      src: "/brand/odoo.png",
-      alt: "Odoo",
-      width: 58,
-      height: 35,
-      className: "w-[58px] max-[680px]:w-[52px]"
-    },
     tone: "violet",
     visual: "workflow",
     points: [
@@ -175,13 +161,6 @@ export const timeline = [
     description:
       "Freelance work turning spreadsheet-heavy workflows into backend-supported analytics and reporting tools.",
     icon: Handshake,
-    logo: {
-      src: "/brand/freelancer.png",
-      alt: "Freelance developer",
-      width: 50,
-      height: 50,
-      className: "size-[50px] rounded-md"
-    },
     tone: "cyan",
     visual: "bars",
     points: [
@@ -201,13 +180,6 @@ export const timeline = [
       "Computer Engineering foundation with project-heavy work across hackathons, robotics, and grant-supported prototyping.",
     icon: GraduationCap,
     iconSize: 34,
-    logo: {
-      src: "/brand/gcet.png",
-      alt: "GCET",
-      width: 54,
-      height: 54,
-      className: "size-[54px] rounded-md"
-    },
     tone: "blue",
     visual: "orbit",
     points: [
