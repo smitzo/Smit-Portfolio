@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/cn";
 import { KanbanBoard } from "../projects/KanbanBoard";
@@ -95,25 +94,17 @@ export function TimelineSection({ timeline, projects }) {
                     </ul>
                   ) : null}
                   {item.coursework ? (
-                    <details className="group mt-4 rounded-lg border border-sky-300/20 bg-sky-500/5 [html[data-theme=light]_&]:border-[#2a6f8021] [html[data-theme=light]_&]:bg-[rgba(250,252,248,0.56)]">
-                      <summary className="grid cursor-pointer list-none grid-cols-[auto_minmax(0,1fr)_16px] items-center gap-x-3 gap-y-[9px] p-3 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-sky-300/40">
-                        <span className="flex items-baseline gap-[7px] font-black">
-                          <span>Relevant Coursework</span>
-                          <small className="text-[0.72rem] font-black text-[var(--muted)]">{item.coursework.length} subjects</small>
-                        </span>
-                        <span className="flex flex-nowrap gap-[7px] overflow-hidden group-open:hidden" aria-hidden="true">
-                          {item.coursework.slice(0, 5).map((subject) => (
-                            <span className="inline-flex min-h-7 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-sky-300/20 bg-sky-500/10 px-2.5 text-[0.78rem] font-[850] text-blue-100 [html[data-theme=light]_&]:border-[#2a6f8021] [html[data-theme=light]_&]:bg-[#2a6f8011] [html[data-theme=light]_&]:text-[#287f92]" key={subject}>{subject}</span>
-                          ))}
-                        </span>
-                        <ChevronDown className="text-sky-300 transition-transform duration-150 group-open:rotate-180 [html[data-theme=light]_&]:text-[#287f92]" size={16} aria-hidden="true" />
-                      </summary>
-                      <ul className="flex flex-wrap gap-2 px-3 pb-3" aria-label="Relevant coursework subjects">
+                    <div className="mt-5 rounded-lg border border-sky-300/20 bg-[linear-gradient(135deg,rgba(56,189,248,0.08),rgba(139,92,246,0.06))] p-3.5 [html[data-theme=light]_&]:border-[#2a6f8021] [html[data-theme=light]_&]:bg-[linear-gradient(135deg,rgba(42,111,128,0.07),rgba(118,96,184,0.05))]">
+                      <div className="mb-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                        <span className="text-[0.95rem] font-black text-[var(--text)]">Relevant Coursework</span>
+                        <span className="text-[0.72rem] font-black uppercase tracking-[0.08em] text-sky-300 [html[data-theme=light]_&]:text-[#287f92]">{item.coursework.length} subjects</span>
+                      </div>
+                      <ul className="flex flex-wrap gap-2.5" aria-label="Relevant coursework subjects">
                         {item.coursework.map((subject) => (
-                          <li className="inline-flex min-h-7 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-sky-300/20 bg-sky-500/10 px-2.5 text-[0.78rem] font-[850] text-blue-100 [html[data-theme=light]_&]:border-[#2a6f8021] [html[data-theme=light]_&]:bg-[#2a6f8011] [html[data-theme=light]_&]:text-[#287f92]" key={subject}>{subject}</li>
+                          <li className="inline-flex min-h-8 items-center justify-center rounded-md border border-sky-300/20 bg-slate-950/35 px-3 py-1 text-[0.8rem] font-[850] text-blue-50 [html[data-theme=light]_&]:border-[#2a6f8024] [html[data-theme=light]_&]:bg-white/65 [html[data-theme=light]_&]:text-[#287f92]" key={subject}>{subject}</li>
                         ))}
                       </ul>
-                    </details>
+                    </div>
                   ) : null}
                   {item.href ? (
                     <a className="mt-[18px] inline-flex min-h-[38px] w-fit items-center gap-[7px] rounded-lg border border-sky-300/30 px-[11px] font-[850] text-sky-300 transition-[transform,border-color,color] duration-150 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:outline-none [html[data-theme=light]_&]:border-[#2a6f803d] [html[data-theme=light]_&]:bg-[#2a6f801a] [html[data-theme=light]_&]:text-[#287f92]" href={item.href} target="_blank" rel="noreferrer">
