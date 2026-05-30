@@ -92,7 +92,7 @@ export function KanbanCard({ item, index = 0 }) {
             aria-label={`${open ? "Collapse" : "Expand"} ${item.title}`}
           >
             <span className="overflow-hidden text-ellipsis whitespace-nowrap text-[0.84rem] font-[820] text-violet-300 [html[data-theme=light]_&]:text-[#7660b8]">{item.meta || item.years || item.eyebrow}</span>
-            <span className="line-clamp-2 overflow-hidden text-[0.96rem] font-[650] text-[var(--text-soft)] [html[data-theme=light]_&]:text-[#5b6874]">{item.summary}</span>
+            <span className="line-clamp-2 overflow-hidden text-[0.96rem] font-[650] text-[var(--text)] [html[data-theme=light]_&]:text-[#172033]">{item.summary}</span>
           </button>
         </div>
         <div className="grid justify-items-end gap-2">
@@ -125,7 +125,7 @@ export function KanbanCard({ item, index = 0 }) {
               exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.22 }}
             >
-              {item.description ? <p className="mb-3.5 font-[650] text-slate-200 [html[data-theme=light]_&]:text-[#5b6874]">{item.description}</p> : null}
+              {item.description ? <p className="mb-3.5 font-[650] text-[var(--text)] [html[data-theme=light]_&]:text-[#172033]">{item.description}</p> : null}
               {detailTags.length ? (
                 <ul className="flex flex-wrap gap-2" aria-label={`${item.title} ${item.tags ? "tech stack" : "details"}`}>
                   {detailTags.map((tag) => (

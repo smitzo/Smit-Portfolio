@@ -90,7 +90,7 @@ export function TimelineSection({ timeline, projects }) {
                   {item.points ? (
                     <ul className="mt-4 grid gap-[9px]" aria-label={`${item.title} highlights`}>
                       {item.points.map((point) => (
-                        <li className="relative pl-5 text-[var(--muted)] before:absolute before:left-0 before:top-[0.72em] before:size-1.5 before:-translate-y-1/2 before:rounded-full before:bg-sky-300 before:shadow-[0_0_12px_rgba(34,211,238,0.55)] before:content-[''] [html[data-theme=light]_&]:text-[#5b6874]" key={point}>{point}</li>
+                        <li className="relative pl-5 font-[650] text-[var(--text)] before:absolute before:left-0 before:top-[0.72em] before:size-1.5 before:-translate-y-1/2 before:rounded-full before:bg-sky-300 before:shadow-[0_0_12px_rgba(34,211,238,0.55)] before:content-[''] [html[data-theme=light]_&]:text-[#172033]" key={point}>{point}</li>
                       ))}
                     </ul>
                   ) : null}
