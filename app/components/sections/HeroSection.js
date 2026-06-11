@@ -1,5 +1,4 @@
 import { ArrowDownRight, MapPin } from "lucide-react";
-import { GithubLogo } from "../ui/BrandLogos";
 import { HeroSystemGraphic } from "../visuals/HeroSystemGraphic";
 
 export function HeroSection({ profile, projects }) {

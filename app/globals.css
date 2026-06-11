@@ -6,7 +6,7 @@
   --bg-mid: #ffffff;
   --bg-end: #eaf3ff;
   --ink: #1d1d1f;
-  --muted: #6e6e73;
+  --muted: #1d1d1f;
   --line: rgba(29, 29, 31, 0.1);
   --card: rgba(255, 255, 255, 0.78);
   --panel: rgba(255, 255, 255, 0.58);
@@ -55,7 +55,7 @@ body {
     radial-gradient(circle at 10% 8%, var(--glow-blue), transparent 448px),
     radial-gradient(circle at 90% 0%, var(--glow-purple), transparent 416px),
     linear-gradient(135deg, var(--bg), var(--bg-mid) 48%, var(--bg-end));
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
@@ -302,6 +302,8 @@ li {
 }
 
 .tech-constellation {
+  --orbit-radius: 137px;
+  --orbit-center: 195px;
   position: relative;
   width: 390px;
   height: 390px;
@@ -337,7 +339,7 @@ li {
   place-items: center;
   offset-anchor: center;
   offset-distance: 0%;
-  offset-path: circle(137px at 195px 195px);
+  offset-path: circle(var(--orbit-radius) at var(--orbit-center) var(--orbit-center));
   offset-rotate: 0deg;
   animation: project-orbit 32s linear infinite;
   animation-delay: var(--orbit-delay);
@@ -439,7 +441,10 @@ li {
 
 .constellation-ring {
   z-index: 0;
-  inset: 58px;
+  top: calc(var(--orbit-center) - var(--orbit-radius));
+  left: calc(var(--orbit-center) - var(--orbit-radius));
+  width: calc(var(--orbit-radius) * 2);
+  height: calc(var(--orbit-radius) * 2);
   border: 1px solid color-mix(in srgb, var(--blue), transparent 84%);
   border-radius: 50%;
 }
@@ -1016,8 +1021,18 @@ li {
 }
 
 .about-links {
-  max-width: 310px;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(132px, 1fr));
+  width: min(100%, 320px);
+  max-width: none;
+  gap: 12px;
+  justify-self: end;
+}
+
+.about-links .button {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
 }
 
 @media (max-width: 1020px) {
@@ -1065,8 +1080,9 @@ li {
   }
 
   .about-links {
-    max-width: none;
+    width: min(100%, 420px);
     justify-content: flex-start;
+    justify-self: start;
   }
 }
 
@@ -1108,6 +1124,8 @@ li {
   }
 
   .tech-constellation {
+    --orbit-radius: min(35.1vw, 137px);
+    --orbit-center: min(47vw, 195px);
     width: min(390px, 94vw);
     height: min(390px, 94vw);
     border-radius: 82px;
