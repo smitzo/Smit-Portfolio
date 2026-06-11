@@ -140,6 +140,9 @@ const contributionBullets = [
 export const timeline = [
   {
     years: "Jul 2025 - Present",
+    startDate: "2025-07-01",
+    endDate: null,
+    journeyLabel: "Professional / Full-time Experience",
     title: "Software Developer, R&D Accounting & Invoicing",
     org: "Odoo",
     meta: "Odoo",
@@ -158,6 +161,9 @@ export const timeline = [
   },
   {
     years: "Jan 2025 - Jul 2025",
+    startDate: "2025-01-01",
+    endDate: "2025-07-01",
+    journeyLabel: "Internship Experience",
     title: "Software Development Intern, R&D Accounting & Invoicing",
     org: "Odoo",
     meta: "Odoo",
@@ -178,6 +184,9 @@ export const timeline = [
   },
   {
     years: "Oct 2024 - Jan 2025",
+    startDate: "2024-10-01",
+    endDate: "2025-01-01",
+    journeyLabel: "Freelance Experience",
     title: "Freelance Backend & Analytics Developer",
     org: "Freelance work",
     meta: "Freelance work",
@@ -196,6 +205,9 @@ export const timeline = [
   },
   {
     years: "2021 - 2025",
+    startDate: "2021-08-01",
+    endDate: "2025-05-01",
+    journeyLabel: "College Education",
     title: "B.E. Computer Engineering",
     org: "G H Patel College of Engineering & Technology",
     meta: "G H Patel College of Engineering & Technology",
