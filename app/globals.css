@@ -340,6 +340,8 @@ li {
   place-items: center;
   transform: rotate(var(--orbit-inverse));
   animation: constellation-upright 34s linear infinite;
+  cursor: pointer;
+  outline: none;
   pointer-events: auto;
 }
 
@@ -353,6 +355,7 @@ li {
   color: var(--accent);
   background: color-mix(in srgb, var(--accent), var(--card) 86%);
   box-shadow: 0 18px 38px color-mix(in srgb, var(--accent), transparent 72%);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
 .constellation-name {
@@ -370,8 +373,25 @@ li {
   backdrop-filter: blur(12px);
 }
 
-.constellation-item:hover .constellation-name {
+.constellation-item:hover .constellation-name,
+.constellation-item:focus-visible .constellation-name {
   opacity: 1;
+}
+
+.constellation-item:hover .constellation-icon,
+.constellation-item:focus-visible .constellation-icon {
+  filter: saturate(1.12);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 22px 46px color-mix(in srgb, var(--accent), transparent 58%),
+    0 0 0 4px color-mix(in srgb, var(--accent), transparent 78%);
+}
+
+.tech-constellation:has(.constellation-item:hover) .constellation-orbit,
+.tech-constellation:has(.constellation-item:focus-visible) .constellation-orbit,
+.tech-constellation:has(.constellation-item:hover) .constellation-item,
+.tech-constellation:has(.constellation-item:focus-visible) .constellation-item {
+  animation-play-state: paused;
 }
 
 .constellation-center {
@@ -388,7 +408,17 @@ li {
   box-shadow: var(--card-shadow);
   text-align: center;
   transform: translate(-50%, -50%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
   backdrop-filter: blur(20px);
+}
+
+.constellation-center:hover,
+.constellation-center:focus-visible {
+  box-shadow:
+    var(--card-shadow),
+    0 0 0 4px color-mix(in srgb, var(--blue), transparent 80%);
+  outline: none;
+  transform: translate(-50%, -50%) scale(1.04);
 }
 
 .constellation-center span {
@@ -422,13 +452,6 @@ li {
   inset: 28px 74px;
   transform: rotate(24deg);
 }
-
-.constellation-orbit-1 { --orbit-start: 0deg; --orbit-inverse: 0deg; }
-.constellation-orbit-2 { --orbit-start: 60deg; --orbit-inverse: -60deg; }
-.constellation-orbit-3 { --orbit-start: 120deg; --orbit-inverse: -120deg; }
-.constellation-orbit-4 { --orbit-start: 180deg; --orbit-inverse: -180deg; }
-.constellation-orbit-5 { --orbit-start: 240deg; --orbit-inverse: -240deg; }
-.constellation-orbit-6 { --orbit-start: 300deg; --orbit-inverse: -300deg; }
 
 @keyframes constellation-orbit {
   from { transform: rotate(var(--orbit-start)); }
