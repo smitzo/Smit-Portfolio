@@ -1,7 +1,7 @@
-import { Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap"
 });
@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={geist.className}>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
