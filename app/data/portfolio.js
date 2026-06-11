@@ -4,10 +4,15 @@ import {
   Bot,
   Code2,
   Database,
+  ChartNoAxesCombined,
+  ClipboardCopy,
+  FileJson2,
+  Fuel,
   GraduationCap,
   Handshake,
   Layers3,
   Monitor,
+  Paintbrush,
 } from "lucide-react";
 
 export const profile = {
@@ -31,7 +36,23 @@ export const navItems = [
 
 export const projects = [
   {
+    title: "Fuel Up",
+    icon: Fuel,
+    eyebrow: "Fuel and route planner",
+    status: "Completed",
+    state: "completed",
+    rating: 3,
+    githubHref: "https://github.com/smitzo/FuelUp",
+    liveHref: "",
+    reserveLiveLink: true,
+    summary: "Route and fuel-stop planning for U.S. truckers with cost-aware recommendations and map visualization.",
+    description:
+      "Full-stack route planner that compares route alternatives and recommends fuel stops using station prices, vehicle range, and trip constraints, with Redis-backed caching and interactive map visualization.",
+    tags: ["Django", "Next.js", "TypeScript", "Redis", "Python", "Docker"]
+  },
+  {
     title: "Finance Agent",
+    icon: Bot,
     eyebrow: "Multi-tenant finance platform",
     status: "Work in progress",
     state: "progress",
@@ -44,6 +65,7 @@ export const projects = [
   },
   {
     title: "Navijob",
+    icon: BriefcaseBusiness,
     eyebrow: "Job platform",
     status: "Work in progress",
     state: "progress",
@@ -54,6 +76,7 @@ export const projects = [
   },
   {
     title: "Clipboard",
+    icon: ClipboardCopy,
     eyebrow: "Online clipboard",
     status: "Deployed",
     state: "completed",
@@ -67,6 +90,7 @@ export const projects = [
   },
   {
     title: "Employee Data Analytics App",
+    icon: ChartNoAxesCombined,
     eyebrow: "Delivered",
     status: "Deployed",
     state: "completed",
@@ -80,6 +104,7 @@ export const projects = [
   },
   {
     title: "Claim Processing Pipeline",
+    icon: FileJson2,
     eyebrow: "Document automation",
     status: "Delivered",
     state: "completed",
@@ -92,6 +117,7 @@ export const projects = [
   },
   {
     title: "Paint Cost Analytics Tool",
+    icon: Paintbrush,
     eyebrow: "Manufacturing analytics",
     status: "Delivered",
     state: "completed",
@@ -107,8 +133,8 @@ export const projects = [
 const contributionBullets = [
   "Build Python backend services, REST APIs, and ORM-driven business logic for Accounting and Invoicing products",
   "Work on E-invoice, tax report computation, compliance workflows, validation rules, and third-party integrations",
-  "Implemented Greece B2G e-invoicing flows for submission, response handling, and API integration",
-  "Participate in debugging, documentation, and Unit testing with cross-functional teams"
+  "Implemented E-invoicing flow for Greek B2G E-invoices",
+  "Participated in debugging, documentation, and Unit testing with cross-functional teams"
 ];
 
 export const timeline = [

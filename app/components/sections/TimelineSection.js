@@ -9,11 +9,6 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { TimelineAccent } from "../visuals/TimelineAccent";
 import { fadeUp } from "../motion-presets";
 
-const projectColumns = [
-  { id: "progress", title: "In Progress", kicker: "Active", states: ["progress"] },
-  { id: "completed", title: "Done Projects", kicker: "Shipped", states: ["completed"] }
-];
-
 export function TimelineSection({ timeline, projects }) {
   const timelineRef = useRef(null);
 
@@ -119,8 +114,8 @@ export function TimelineSection({ timeline, projects }) {
         </div>
 
         <div className="mt-11 border-t border-[var(--line)] pt-[38px] max-[680px]:mt-[34px] max-[680px]:pt-[30px]" id="timeline-projects">
-          <SectionHeading title="Project Board" id="projects-title"/>
-          <KanbanBoard title="Project tasks" columns={projectColumns} items={projects} />
+          <SectionHeading title="Featured Projects" id="projects-title"/>
+          <KanbanBoard title="Projects" items={projects} />
         </div>
       </div>
     </section>
