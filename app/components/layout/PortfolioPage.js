@@ -1,3 +1,5 @@
+"use client";
+
 import { navItems, profile, projects, skills, timeline } from "../../data/portfolio";
 import { SiteHeader } from "./SiteHeader";
 import { ContactSection } from "../sections/ContactSection";

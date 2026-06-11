@@ -1,55 +1,120 @@
-import { ArrowUpRight, GraduationCap } from "lucide-react";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { KanbanBoard } from "../projects/KanbanBoard";
 import { GithubLogo } from "../ui/BrandLogos";
 
-function SectionHeading({ eyebrow, title, intro }) {
+const journeyAccents = ["#007aff", "#5856d6", "#00a6a6", "#af52de"];
+
+function SectionHeading({ eyebrow, title, intro, id }) {
   return (
     <div className="section-heading">
       <p className="eyebrow">{eyebrow}</p>
-      <h2>{title}</h2>
+      <h2 id={id}>{title}</h2>
       <p>{intro}</p>
     </div>
   );
 }
 
 export function TimelineSection({ timeline, projects }) {
-  const experience = timeline.filter((item) => item.state !== "education");
-  const education = timeline.find((item) => item.state === "education");
+  const journeyRef = useRef(null);
+  const progressRef = useRef(null);
+
+  useEffect(() => {
+    const journey = journeyRef.current;
+    const progress = progressRef.current;
+    if (!journey || !progress) return;
+
+    let frame = 0;
+
+    const updateProgress = () => {
+      const rect = journey.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const start = viewportHeight * 0.72;
+      const end = viewportHeight * 0.24;
+      const distance = rect.height + start - end;
+      const travelled = start - rect.top;
+      const value = Math.min(1, Math.max(0, travelled / distance));
+
+      progress.style.transform = `scaleY(${value})`;
+      frame = 0;
+    };
+
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <>
-      <section className="content-section" id="experience" aria-labelledby="experience-title">
+      <section className="content-section" id="experience" aria-labelledby="journey-title">
         <SectionHeading
-          eyebrow="Experience"
-          title="Work built around correctness."
-          intro="Product engineering across accounting, invoicing, compliance, analytics, and backend automation."
+          eyebrow="Journey"
+          title="From engineering foundations to production systems."
+          intro="Education, freelance work, and Odoo product engineering form one continuous path through practical, correctness-focused software."
+          id="journey-title"
         />
-        <div className="experience-grid">
-          {experience.map((item, index) => {
+
+        <div className="journey" ref={journeyRef}>
+          <div className="journey-track" aria-hidden="true">
+            <span className="journey-progress" ref={progressRef} />
+          </div>
+
+          {timeline.map((item, index) => {
             const Icon = item.icon;
+            const isEducation = item.state === "education";
+
             return (
               <article
-                className={`experience-card ${index === 0 ? "experience-card-featured" : ""}`}
-                style={{ "--accent": index === 0 ? "#007aff" : index === 1 ? "#af52de" : "#00a6a6" }}
+                className={`journey-entry ${index % 2 ? "journey-entry-right" : "journey-entry-left"}`}
+                id={isEducation ? "education" : undefined}
+                style={{ "--accent": journeyAccents[index % journeyAccents.length] }}
                 key={`${item.years}-${item.title}`}
               >
-                <div className="experience-card-top">
-                  <span className="experience-icon"><Icon size={25} /></span>
-                  <span className="date-chip">{item.years}</span>
+                <span className="journey-marker" aria-hidden="true">
+                  <Icon size={23} />
+                </span>
+
+                <div className="journey-card">
+                  <div className="journey-card-top">
+                    <span className="journey-org">{item.org}</span>
+                    <span className="date-chip">{item.years}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p className="journey-summary">{item.description}</p>
+
+                  <ul className="highlight-list">
+                    {item.points.map((point) => <li key={point}>{point}</li>)}
+                  </ul>
+
+                  {item.coursework ? (
+                    <div className="journey-coursework">
+                      <p className="coursework-label">Relevant coursework</p>
+                      <ul className="coursework-list">
+                        {item.coursework.map((subject) => <li key={subject}>{subject}</li>)}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {item.href ? (
+                    <a className="text-link" href={item.href} target="_blank" rel="noreferrer">
+                      <GithubLogo size={16} />
+                      {item.action}
+                      <ArrowUpRight size={15} />
+                    </a>
+                  ) : null}
                 </div>
-                <p className="experience-org">{item.org}</p>
-                <h3>{item.title}</h3>
-                <p className="experience-summary">{item.description}</p>
-                <ul className="highlight-list">
-                  {item.points.map((point) => <li key={point}>{point}</li>)}
-                </ul>
-                {item.href ? (
-                  <a className="text-link" href={item.href} target="_blank" rel="noreferrer">
-                    <GithubLogo size={16} />
-                    {item.action}
-                    <ArrowUpRight size={15} />
-                  </a>
-                ) : null}
               </article>
             );
           })}
@@ -61,42 +126,10 @@ export function TimelineSection({ timeline, projects }) {
           eyebrow="Selected work"
           title="Projects that solve a clear problem."
           intro="A mix of shipped products and active builds. Three stars mark the work I consider strongest."
+          id="projects-title"
         />
         <KanbanBoard items={projects} />
       </section>
-
-      {education ? (
-        <section className="content-section" id="education" aria-labelledby="education-title">
-          <SectionHeading
-            eyebrow="Education"
-            title="Engineering foundations, tested by building."
-            intro="Coursework paired with hackathons, robotics, grants, sport, and practical prototypes."
-          />
-          <article
-            className="education-card"
-          >
-            <div className="education-main">
-              <span className="education-icon"><GraduationCap size={32} /></span>
-              <div>
-                <p className="eyebrow">{education.years}</p>
-                <h3 id="education-title">{education.title}</h3>
-                <p className="education-org">{education.org}</p>
-              </div>
-            </div>
-            <div className="education-details">
-              <ul className="highlight-list">
-                {education.points.map((point) => <li key={point}>{point}</li>)}
-              </ul>
-              <div>
-                <p className="coursework-label">Relevant coursework</p>
-                <ul className="coursework-list">
-                  {education.coursework.map((subject) => <li key={subject}>{subject}</li>)}
-                </ul>
-              </div>
-            </div>
-          </article>
-        </section>
-      ) : null}
     </>
   );
 }

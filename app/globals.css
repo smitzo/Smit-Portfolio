@@ -448,8 +448,7 @@ li {
 }
 
 .stats div,
-.about,
-.education-card {
+.about {
   border: 1px solid var(--line);
   border-radius: 30px;
   background: var(--panel);
@@ -515,13 +514,6 @@ li {
   max-width: none;
 }
 
-.experience-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.experience-card,
 .project-card,
 .stack-card {
   position: relative;
@@ -534,7 +526,6 @@ li {
   backdrop-filter: blur(18px);
 }
 
-.experience-card::before,
 .project-card::before,
 .stack-card::before {
   position: absolute;
@@ -549,24 +540,12 @@ li {
   pointer-events: none;
 }
 
-.experience-card > *,
 .project-card > *,
 .stack-card > * {
   position: relative;
   z-index: 1;
 }
 
-.experience-card {
-  min-height: 380px;
-  padding: 28px;
-  border-radius: 34px;
-}
-
-.experience-card-featured {
-  grid-column: span 2;
-}
-
-.experience-card-top,
 .project-card-top,
 .project-title-row {
   display: flex;
@@ -575,10 +554,8 @@ li {
   justify-content: space-between;
 }
 
-.experience-icon,
 .project-icon,
-.stack-icon,
-.education-icon {
+.stack-icon {
   display: grid;
   width: 54px;
   height: 54px;
@@ -600,16 +577,8 @@ li {
   font-weight: 800;
 }
 
-.experience-org {
-  margin: 28px 0 8px;
-  color: color-mix(in srgb, var(--accent), var(--ink) 28%);
-  font-size: 14px;
-  font-weight: 850;
-}
-
-.experience-card h3,
 .project-card h3,
-.education-card h3 {
+.journey-card h3 {
   margin-bottom: 14px;
   font-size: 28px;
   font-weight: 850;
@@ -617,8 +586,8 @@ li {
   line-height: 1.12;
 }
 
-.experience-summary,
-.project-description {
+.project-description,
+.journey-summary {
   margin-bottom: 20px;
   color: var(--muted);
   font-size: 15px;
@@ -789,48 +758,134 @@ li {
   background: transparent;
 }
 
-.education-card {
-  display: grid;
-  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
-  gap: 44px;
-  padding: 38px;
-}
-
-.education-main {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.education-icon {
-  flex: 0 0 auto;
-  width: 70px;
-  height: 70px;
-  border-radius: 23px;
-}
-
-.education-card h3 {
-  margin-bottom: 8px;
-  font-size: 30px;
-}
-
-.education-org {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.education-details {
-  display: grid;
-  gap: 18px;
-}
-
 .coursework-label {
   margin-bottom: 12px;
   font-size: 13px;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.journey {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  padding: 12px 0;
+}
+
+.journey-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line), transparent 12%);
+  transform: translateX(-50%);
+}
+
+.journey-progress {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, #007aff, #5856d6 36%, #00a6a6 68%, #af52de);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--blue), transparent 55%);
+  transform: scaleY(0);
+  transform-origin: top;
+  will-change: transform;
+}
+
+.journey-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr);
+  align-items: start;
+}
+
+.journey-entry-left .journey-card {
+  grid-column: 1;
+}
+
+.journey-entry-right .journey-card {
+  grid-column: 3;
+}
+
+.journey-marker {
+  position: sticky;
+  top: 34vh;
+  z-index: 3;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin: 25px auto 0;
+  border: 5px solid var(--bg-mid);
+  border-radius: 18px;
+  place-items: center;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent), var(--card) 88%);
+  box-shadow:
+    0 12px 28px color-mix(in srgb, var(--accent), transparent 75%),
+    0 0 0 1px color-mix(in srgb, var(--accent), transparent 62%);
+}
+
+:root[data-theme="dark"] .journey-marker {
+  border-color: var(--bg-mid);
+}
+
+.journey-card {
+  position: relative;
+  min-width: 0;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  background: var(--card);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.journey-card::before {
+  position: absolute;
+  top: -100px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  content: "";
+  background: color-mix(in srgb, var(--accent), transparent 76%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.journey-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.journey-card-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.journey-org {
+  color: color-mix(in srgb, var(--accent), var(--ink) 28%);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.journey-coursework {
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+}
+
+.journey-card .text-link {
+  margin-top: 4px;
 }
 
 .stack-grid {
@@ -958,7 +1013,6 @@ li {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .education-card,
   .about {
     grid-template-columns: 1fr;
   }
@@ -1014,7 +1068,6 @@ li {
   }
 
   .stats,
-  .experience-grid,
   .project-grid,
   .stack-grid {
     grid-template-columns: 1fr;
@@ -1024,7 +1077,6 @@ li {
     margin-bottom: 70px;
   }
 
-  .experience-card-featured,
   .project-card-featured {
     grid-column: auto;
   }
@@ -1039,19 +1091,55 @@ li {
     gap: 4px;
   }
 
-  .experience-card,
   .project-card {
     min-height: 0;
   }
 
-  .education-card,
   .about {
     padding: 26px;
     border-radius: 26px;
   }
 
-  .education-main {
-    display: grid;
+  .journey {
+    gap: 24px;
+  }
+
+  .journey-track {
+    left: 26px;
+  }
+
+  .journey-entry {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .journey-entry-left .journey-card,
+  .journey-entry-right .journey-card {
+    grid-column: 2;
+  }
+
+  .journey-marker {
+    top: 22vh;
+    grid-column: 1;
+    width: 46px;
+    height: 46px;
+    margin-top: 22px;
+    border-width: 4px;
+    border-radius: 15px;
+  }
+
+  .journey-card {
+    padding: 22px;
+    border-radius: 26px;
+  }
+
+  .journey-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
+
+  .journey-card h3 {
+    font-size: 24px;
   }
 
   .project-actions .project-link,
