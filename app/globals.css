@@ -303,7 +303,7 @@ li {
 
 .tech-constellation {
   --orbit-radius: 137px;
-  --orbit-center: 195px;
+  --orbit-duration: 32s;
   position: relative;
   width: 390px;
   height: 390px;
@@ -318,35 +318,43 @@ li {
   backdrop-filter: blur(22px);
 }
 
-.constellation-orbit,
+.constellation-wheel,
+.constellation-slot,
 .constellation-item,
 .constellation-ring,
 .constellation-center {
   position: absolute;
 }
 
-.constellation-orbit {
+.constellation-wheel {
   z-index: 2;
   inset: 0;
+  animation: constellation-wheel-spin var(--orbit-duration) linear infinite;
   pointer-events: none;
+  will-change: transform;
+}
+
+.constellation-slot {
+  top: 50%;
+  left: 50%;
+  width: 84px;
+  height: 84px;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--slot-angle))
+    translateY(calc(var(--orbit-radius) * -1));
 }
 
 .constellation-item {
-  top: 0;
-  left: 0;
+  inset: 0;
   display: grid;
-  width: 84px;
   place-items: center;
-  offset-anchor: center;
-  offset-distance: 0%;
-  offset-path: circle(var(--orbit-radius) at var(--orbit-center) var(--orbit-center));
-  offset-rotate: 0deg;
-  animation: project-orbit 32s linear infinite;
-  animation-delay: var(--orbit-delay);
+  transform: rotate(var(--slot-inverse));
+  animation: constellation-item-upright var(--orbit-duration) linear infinite;
   cursor: pointer;
   outline: none;
   pointer-events: auto;
-  will-change: offset-distance;
+  will-change: transform;
 }
 
 .constellation-icon {
@@ -363,8 +371,10 @@ li {
 }
 
 .constellation-name {
+  position: absolute;
+  top: calc(50% + 43px);
+  left: 50%;
   width: max-content;
-  margin-top: 7px;
   padding: 5px 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -373,13 +383,15 @@ li {
   font-size: 10px;
   font-weight: 800;
   opacity: 0;
-  transition: opacity 160ms ease;
+  transform: translateX(-50%);
+  transition: opacity 160ms ease, transform 160ms ease;
   backdrop-filter: blur(12px);
 }
 
 .constellation-item:hover .constellation-name,
 .constellation-item:focus-visible .constellation-name {
   opacity: 1;
+  transform: translate(-50%, 3px);
 }
 
 .constellation-item:hover .constellation-icon,
@@ -391,6 +403,8 @@ li {
     0 0 0 4px color-mix(in srgb, var(--accent), transparent 78%);
 }
 
+.tech-constellation:has(.constellation-item:hover) .constellation-wheel,
+.tech-constellation:has(.constellation-item:focus-visible) .constellation-wheel,
 .tech-constellation:has(.constellation-item:hover) .constellation-item,
 .tech-constellation:has(.constellation-item:focus-visible) .constellation-item {
   animation-play-state: paused;
@@ -441,17 +455,23 @@ li {
 
 .constellation-ring {
   z-index: 0;
-  top: calc(var(--orbit-center) - var(--orbit-radius));
-  left: calc(var(--orbit-center) - var(--orbit-radius));
+  top: 50%;
+  left: 50%;
   width: calc(var(--orbit-radius) * 2);
   height: calc(var(--orbit-radius) * 2);
   border: 1px solid color-mix(in srgb, var(--blue), transparent 84%);
   border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes project-orbit {
-  from { offset-distance: 0%; }
-  to { offset-distance: 100%; }
+@keyframes constellation-wheel-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes constellation-item-upright {
+  from { transform: rotate(var(--slot-inverse)); }
+  to { transform: rotate(calc(var(--slot-inverse) - 360deg)); }
 }
 
 .about {
@@ -1124,8 +1144,7 @@ li {
   }
 
   .tech-constellation {
-    --orbit-radius: min(35.1vw, 137px);
-    --orbit-center: min(47vw, 195px);
+    --orbit-radius: min(35vw, 137px);
     width: min(390px, 94vw);
     height: min(390px, 94vw);
     border-radius: 82px;
