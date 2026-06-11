@@ -95,7 +95,7 @@ export function TimelineSection({ timeline, projects }) {
           {timeline.map((item, index) => {
             const Icon = item.icon;
             const isEducation = item.state === "education";
-            const duration = formatDuration(item.startDate, item.endDate);
+            const duration = item.durationLabel || formatDuration(item.startDate, item.endDate);
 
             return (
               <article
@@ -156,7 +156,7 @@ export function TimelineSection({ timeline, projects }) {
         <SectionHeading
           eyebrow="Selected work"
           title="Projects that solve a clear problem."
-          intro="A mix of shipped products and active builds. Three stars mark the work I consider strongest."
+          intro="A mix of shipped products and active builds."
           id="projects-title"
         />
         <KanbanBoard items={projects} />

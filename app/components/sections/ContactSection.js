@@ -1,5 +1,5 @@
 import { Mail, MapPin } from "lucide-react";
-import { GithubLogo, LinkedInLogo } from "../ui/BrandLogos";
+import { GithubLogo, LinkedInLogo, XLogo } from "../ui/BrandLogos";
 
 export function ContactSection({ profile }) {
   return (
@@ -27,6 +27,10 @@ export function ContactSection({ profile }) {
         <a className="button button-ghost" href={profile.github} target="_blank" rel="noreferrer">
           <GithubLogo />
           GitHub
+        </a>
+        <a className="button button-ghost" href={profile.twitter} target="_blank" rel="noreferrer">
+          <XLogo/>
+          X
         </a>
       </div>
     </footer>

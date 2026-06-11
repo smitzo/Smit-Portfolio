@@ -64,17 +64,6 @@ export const projects = [
     tags: ["FastAPI", "Postgres", "REST APIs", "LangGraph", "Neo4j", "Python"]
   },
   {
-    title: "Navijob",
-    icon: BriefcaseBusiness,
-    eyebrow: "Job platform",
-    status: "Work in progress",
-    state: "progress",
-    summary: "Job platform planned for role discovery, saved opportunities, and application tracking.",
-    description:
-      "Work-in-progress job platform planned with a Next.js frontend and Django backend for candidate-focused search and application workflows.",
-    tags: ["Django", "Next.js", "Postgres", "Python"]
-  },
-  {
     title: "Clipboard",
     icon: ClipboardCopy,
     eyebrow: "Online clipboard",
@@ -127,6 +116,17 @@ export const projects = [
     description:
       "Built for a manufacturing firm to understand paint profitability from Excel sheets, compare costs, and make margin visibility easier for operators.",
     tags: ["Python", "Pandas", "openpyxl", "Tkinter"]
+  },
+  {
+    title: "Navijob",
+    icon: BriefcaseBusiness,
+    eyebrow: "Job platform",
+    status: "Work in progress",
+    state: "progress",
+    summary: "Job platform planned for role discovery, saved opportunities, and application tracking.",
+    description:
+      "Work-in-progress job platform planned with a Next.js frontend and Django backend for candidate-focused search and application workflows.",
+    tags: ["Django", "Next.js", "Postgres", "Python"]
   }
 ];
 
@@ -207,6 +207,7 @@ export const timeline = [
     years: "2021 - 2025",
     startDate: "2021-08-01",
     endDate: "2025-05-01",
+    durationLabel: "4 years",
     journeyLabel: "College Education",
     title: "B.E. Computer Engineering",
     org: "G H Patel College of Engineering & Technology",
