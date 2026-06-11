@@ -27,11 +27,11 @@ export const profile = {
 };
 
 export const navItems = [
-  ["Home", "#top"],
-  ["Timeline", "#timeline"],
-  ["Projects", "#timeline-projects"],
+  ["Experience", "#experience"],
+  ["Projects", "#projects"],
+  ["Education", "#education"],
   ["Stack", "#stack"],
-  ["Contact", "#contact"]
+  ["Contact", "#contact"],
 ];
 
 export const projects = [

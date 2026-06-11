@@ -22,7 +22,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              try {
+                const stored = localStorage.getItem("portfolio-theme");
+                const theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.documentElement.dataset.theme = theme;
+              } catch {}
+            })();`,
+          }}
+        />
+      </head>
       <body className={geist.className}>{children}</body>
     </html>
   );
