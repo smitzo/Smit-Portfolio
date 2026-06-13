@@ -26,7 +26,7 @@ export function KanbanBoard({ title, columns, items }) {
             <div className="flex min-h-[78px] items-center justify-between gap-[18px] px-[18px] pb-3 pt-[18px] max-[680px]:min-h-[70px] max-[680px]:px-4 max-[680px]:pb-2.5 max-[680px]:pt-4">
               <div>
                 <p className="text-[0.78rem] font-black uppercase text-sky-300 [html[data-theme=light]_&]:text-[#287f92]">{column.kicker}</p>
-                <h3 className="mt-0.5 text-[1.12rem] text-[var(--text)]" id={`${column.id}-title`}>{column.title}</h3>
+                <h3 className="mt-0.5 text-[1.12rem] font-black leading-tight text-[var(--text)]" id={`${column.id}-title`}>{column.title}</h3>
               </div>
               <span className="grid size-[34px] shrink-0 place-items-center rounded-lg border border-sky-300/30 bg-sky-500/10 text-[0.92rem] font-black text-sky-300 [html[data-theme=light]_&]:border-[#2a6f803d] [html[data-theme=light]_&]:bg-[#2a6f801a] [html[data-theme=light]_&]:text-[#287f92]">{columnItems.length}</span>
             </div>
