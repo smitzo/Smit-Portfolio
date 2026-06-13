@@ -44,7 +44,14 @@ export function KanbanCard({ item, index = 0 }) {
           aria-label={`${open ? "Collapse" : "Expand"} ${item.title}`}
         >
           <span className="inline-flex min-h-7 w-fit max-w-full items-center gap-[7px] overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border border-sky-300/25 bg-sky-500/10 px-2 py-[3px] text-[0.78rem] font-[850] text-sky-300 [html[data-theme=light]_&]:border-[#2a6f803d] [html[data-theme=light]_&]:bg-[#2a6f801a] [html[data-theme=light]_&]:text-[#287f92]">
-            <span className={`status-dot ${item.state}`} aria-hidden="true" />
+            <span
+              className={cn(
+                "size-[9px] rounded-full bg-[var(--green)] shadow-[0_0_18px_rgba(52,211,153,0.85)]",
+                item.state === "progress" && "bg-yellow-400 shadow-[0_0_18px_rgba(250,204,21,0.85)]",
+                item.state === "education" && "bg-violet-300 shadow-[0_0_18px_rgba(167,139,250,0.85)]"
+              )}
+              aria-hidden="true"
+            />
             {item.status || item.eyebrow}
           </span>
           <span className="flex min-w-0 items-center gap-2">
@@ -74,7 +81,7 @@ export function KanbanCard({ item, index = 0 }) {
             </span>
           ) : null}
           <button
-            className="summary-icon grid size-[38px] cursor-pointer place-items-center p-0 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-sky-300/50 max-[680px]:size-[42px]"
+            className="grid size-[38px] cursor-pointer place-items-center rounded-lg border border-sky-300/50 bg-sky-500/20 p-0 text-sky-200 shadow-[0_0_0_1px_rgba(125,211,252,0.08),0_12px_28px_rgba(14,165,233,0.14)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-sky-300/50 [html[data-theme=light]_&]:border-[#2a6f803d] [html[data-theme=light]_&]:bg-[#2a6f801a] [html[data-theme=light]_&]:text-[#287f92] [html[data-theme=light]_&]:shadow-[0_0_0_1px_rgba(42,111,128,0.04),0_12px_28px_rgba(42,111,128,0.08)] max-[680px]:size-[42px]"
             type="button"
             onClick={toggleOpen}
             aria-expanded={open}
@@ -104,9 +111,9 @@ export function KanbanCard({ item, index = 0 }) {
             >
               {item.description ? <p className="mb-3.5 font-[650] text-slate-200 [html[data-theme=light]_&]:text-[#5b6874]">{item.description}</p> : null}
               {detailTags.length ? (
-                <ul className="tag-list" aria-label={`${item.title} ${item.tags ? "tech stack" : "details"}`}>
+                <ul className="flex flex-wrap gap-2" aria-label={`${item.title} ${item.tags ? "tech stack" : "details"}`}>
                   {detailTags.map((tag) => (
-                    <li key={tag}>{tag}</li>
+                    <li className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-400/20 bg-slate-900/70 px-[9px] py-1 text-[0.88rem] font-[760] text-[var(--text-soft)] [html[data-theme=light]_&]:border-[#2d46591c] [html[data-theme=light]_&]:bg-[rgba(250,252,248,0.72)] [html[data-theme=light]_&]:text-[#4c5968]" key={tag}>{tag}</li>
                   ))}
                 </ul>
               ) : null}
