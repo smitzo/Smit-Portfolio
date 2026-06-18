@@ -7,6 +7,27 @@ import { GithubLogo } from "../ui/BrandLogos";
 
 const journeyAccents = ["#007aff", "#5856d6", "#00a6a6", "#af52de"];
 
+function formatDuration(startDate, endDate) {
+  const start = new Date(`${startDate}T00:00:00`);
+  const end = endDate ? new Date(`${endDate}T00:00:00`) : new Date();
+  let months = (end.getFullYear() - start.getFullYear()) * 12;
+  months += end.getMonth() - start.getMonth();
+
+  if (end.getDate() < start.getDate()) months -= 1;
+  months = Math.max(0, months);
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+  const parts = [];
+
+  if (years) parts.push(`${years} ${years === 1 ? "year" : "years"}`);
+  if (remainingMonths) {
+    parts.push(`${remainingMonths} ${remainingMonths === 1 ? "month" : "months"}`);
+  }
+
+  return parts.join(" ") || "Less than a month";
+}
+
 function SectionHeading({ eyebrow, title, intro, id }) {
   return (
     <div className="section-heading">
@@ -74,6 +95,7 @@ export function TimelineSection({ timeline, projects }) {
           {timeline.map((item, index) => {
             const Icon = item.icon;
             const isEducation = item.state === "education";
+            const duration = formatDuration(item.startDate, item.endDate);
 
             return (
               <article
@@ -83,13 +105,22 @@ export function TimelineSection({ timeline, projects }) {
                 key={`${item.years}-${item.title}`}
               >
                 <span className="journey-marker" aria-hidden="true">
-                  <Icon size={23} />
+                  <Icon size={31} />
                 </span>
+
+                <div className="journey-context">
+                  <p>Timeline chapter</p>
+                  <h3>{item.journeyLabel}</h3>
+                  <span>{duration}</span>
+                </div>
 
                 <div className="journey-card">
                   <div className="journey-card-top">
                     <span className="journey-org">{item.org}</span>
-                    <span className="date-chip">{item.years}</span>
+                    <span className="date-chip">
+                      <strong>{item.years}</strong>
+                      <small>{duration}</small>
+                    </span>
                   </div>
                   <h3>{item.title}</h3>
                   <p className="journey-summary">{item.description}</p>

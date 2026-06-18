@@ -25,7 +25,7 @@
   --bg-mid: #101012;
   --bg-end: #07111d;
   --ink: #f5f5f7;
-  --muted: #a1a1a6;
+  --muted: #f5f5f7;
   --line: rgba(245, 245, 247, 0.14);
   --card: rgba(28, 28, 30, 0.76);
   --panel: rgba(28, 28, 30, 0.58);
@@ -315,42 +315,35 @@ li {
 }
 
 .constellation-orbit {
-  --orbit-size: 274px;
-  --orbit-start: 0deg;
-  --orbit-inverse: 0deg;
   z-index: 2;
-  top: 50%;
-  left: 50%;
-  width: var(--orbit-size);
-  height: var(--orbit-size);
-  margin-top: calc(var(--orbit-size) / -2);
-  margin-left: calc(var(--orbit-size) / -2);
-  border-radius: 50%;
-  transform: rotate(var(--orbit-start));
-  animation: constellation-orbit 34s linear infinite;
+  inset: 0;
   pointer-events: none;
 }
 
 .constellation-item {
-  top: -30px;
-  left: 50%;
+  top: 0;
+  left: 0;
   display: grid;
-  width: 76px;
-  margin-left: -38px;
+  width: 84px;
   place-items: center;
-  transform: rotate(var(--orbit-inverse));
-  animation: constellation-upright 34s linear infinite;
+  offset-anchor: center;
+  offset-distance: 0%;
+  offset-path: circle(137px at 195px 195px);
+  offset-rotate: 0deg;
+  animation: project-orbit 32s linear infinite;
+  animation-delay: var(--orbit-delay);
   cursor: pointer;
   outline: none;
   pointer-events: auto;
+  will-change: offset-distance;
 }
 
 .constellation-icon {
   display: grid;
-  width: 62px;
-  height: 62px;
+  width: 70px;
+  height: 70px;
   border: 1px solid color-mix(in srgb, var(--accent), transparent 58%);
-  border-radius: 20px;
+  border-radius: 22px;
   place-items: center;
   color: var(--accent);
   background: color-mix(in srgb, var(--accent), var(--card) 86%);
@@ -364,7 +357,7 @@ li {
   padding: 5px 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--ink);
   background: var(--panel);
   font-size: 10px;
   font-weight: 800;
@@ -387,8 +380,6 @@ li {
     0 0 0 4px color-mix(in srgb, var(--accent), transparent 78%);
 }
 
-.tech-constellation:has(.constellation-item:hover) .constellation-orbit,
-.tech-constellation:has(.constellation-item:focus-visible) .constellation-orbit,
 .tech-constellation:has(.constellation-item:hover) .constellation-item,
 .tech-constellation:has(.constellation-item:focus-visible) .constellation-item {
   animation-play-state: paused;
@@ -453,14 +444,9 @@ li {
   transform: rotate(24deg);
 }
 
-@keyframes constellation-orbit {
-  from { transform: rotate(var(--orbit-start)); }
-  to { transform: rotate(calc(var(--orbit-start) + 360deg)); }
-}
-
-@keyframes constellation-upright {
-  from { transform: rotate(var(--orbit-inverse)); }
-  to { transform: rotate(calc(var(--orbit-inverse) - 360deg)); }
+@keyframes project-orbit {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
 }
 
 .stats {
@@ -597,6 +583,25 @@ li {
   color: var(--muted);
   background: var(--chip);
   font-size: 12px;
+  font-weight: 800;
+}
+
+.date-chip {
+  display: grid;
+  gap: 3px;
+  min-width: 142px;
+  text-align: right;
+}
+
+.date-chip strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.date-chip small {
+  color: var(--muted);
+  font-size: 11px;
   font-weight: 800;
 }
 
@@ -828,30 +833,84 @@ li {
 
 .journey-entry-left .journey-card {
   grid-column: 1;
+  grid-row: 1;
 }
 
 .journey-entry-right .journey-card {
   grid-column: 3;
+  grid-row: 1;
+}
+
+.journey-entry-left .journey-context {
+  grid-column: 3;
+}
+
+.journey-entry-right .journey-context {
+  grid-column: 1;
 }
 
 .journey-marker {
-  position: sticky;
-  top: 34vh;
+  position: relative;
   z-index: 3;
   grid-column: 2;
   grid-row: 1;
   display: grid;
-  width: 52px;
-  height: 52px;
-  margin: 25px auto 0;
+  width: 68px;
+  height: 68px;
+  margin: 22px auto 0;
   border: 5px solid var(--bg-mid);
-  border-radius: 18px;
+  border-radius: 22px;
   place-items: center;
   color: var(--accent);
   background: color-mix(in srgb, var(--accent), var(--card) 88%);
   box-shadow:
     0 12px 28px color-mix(in srgb, var(--accent), transparent 75%),
     0 0 0 1px color-mix(in srgb, var(--accent), transparent 62%);
+}
+
+.journey-context {
+  grid-row: 1;
+  align-self: start;
+  max-width: 420px;
+  padding: 34px 42px;
+}
+
+.journey-entry-left .journey-context {
+  justify-self: start;
+}
+
+.journey-entry-right .journey-context {
+  justify-self: end;
+  text-align: right;
+}
+
+.journey-context p {
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.journey-context h3 {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.journey-context span {
+  display: inline-flex;
+  padding: 7px 11px;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 70%);
+  border-radius: 999px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  font-size: 14px;
+  font-weight: 850;
 }
 
 :root[data-theme="dark"] .journey-marker {
@@ -1129,26 +1188,47 @@ li {
   }
 
   .journey-track {
-    left: 26px;
+    left: 30px;
   }
 
   .journey-entry {
-    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-columns: 72px minmax(0, 1fr);
   }
 
   .journey-entry-left .journey-card,
   .journey-entry-right .journey-card {
     grid-column: 2;
+    grid-row: 2;
+  }
+
+  .journey-entry-left .journey-context,
+  .journey-entry-right .journey-context {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: stretch;
+    max-width: none;
+    padding: 7px 0 18px;
+    text-align: left;
   }
 
   .journey-marker {
-    top: 22vh;
     grid-column: 1;
-    width: 46px;
-    height: 46px;
-    margin-top: 22px;
+    grid-row: 1;
+    width: 58px;
+    height: 58px;
+    margin-top: 0;
     border-width: 4px;
-    border-radius: 15px;
+    border-radius: 19px;
+  }
+
+  .journey-context h3 {
+    margin-bottom: 9px;
+    font-size: 22px;
+  }
+
+  .journey-context p {
+    margin-bottom: 7px;
+    font-size: 10px;
   }
 
   .journey-card {
@@ -1160,6 +1240,11 @@ li {
     align-items: flex-start;
     flex-direction: column;
     margin-bottom: 18px;
+  }
+
+  .date-chip {
+    min-width: 0;
+    text-align: left;
   }
 
   .journey-card h3 {

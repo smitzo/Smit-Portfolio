@@ -17,15 +17,14 @@ export function HeroSystemGraphic({ projects }) {
       <div className="tech-constellation">
         {linkedProjects.map((project, index) => {
           const Icon = project.icon;
-          const angle = index * (360 / linkedProjects.length);
+          const orbitDuration = 32;
 
           return (
             <div
               className="constellation-orbit"
               style={{
                 "--accent": accents[index % accents.length],
-                "--orbit-start": `${angle}deg`,
-                "--orbit-inverse": `${-angle}deg`,
+                "--orbit-delay": `${-(index * orbitDuration) / linkedProjects.length}s`,
               }}
               key={project.title}
             >
@@ -37,7 +36,7 @@ export function HeroSystemGraphic({ projects }) {
                 aria-label={`Open ${project.title} on GitHub`}
               >
                 <span className="constellation-icon" aria-hidden="true">
-                  <Icon size={29} />
+                  <Icon size={32} />
                 </span>
                 <span className="constellation-name">{project.title}</span>
               </a>
