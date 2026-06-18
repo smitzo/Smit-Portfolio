@@ -2,7 +2,7 @@ import { ArrowDownRight, MapPin } from "lucide-react";
 import { GithubLogo } from "../ui/BrandLogos";
 import { HeroSystemGraphic } from "../visuals/HeroSystemGraphic";
 
-export function HeroSection({ profile }) {
+export function HeroSection({ profile, projects }) {
   return (
     <>
       <section className="hero" aria-labelledby="hero-title">
@@ -28,7 +28,7 @@ export function HeroSection({ profile }) {
             </a>
           </div>
         </div>
-        <HeroSystemGraphic />
+        <HeroSystemGraphic projects={projects} />
       </section>
 
       <section className="stats" aria-label="Portfolio overview">

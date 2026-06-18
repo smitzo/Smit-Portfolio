@@ -11,7 +11,7 @@ export function PortfolioPage() {
   return (
     <main className="site-shell" id="top">
       <SiteHeader navItems={navItems} />
-      <HeroSection profile={profile} />
+      <HeroSection profile={profile} projects={projects} />
       <TimelineSection timeline={timeline} projects={projects} />
       <StackSection skills={skills} />
       <ContactSection profile={profile} />
