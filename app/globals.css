@@ -222,6 +222,15 @@ li {
   text-transform: uppercase;
 }
 
+.hero-copy > .eyebrow,
+.section-heading > .eyebrow,
+.section-heading-split .eyebrow,
+.about .eyebrow {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 2.2px;
+}
+
 .hero h1 {
   max-width: 800px;
   margin-bottom: 28px;
@@ -430,18 +439,9 @@ li {
 
 .constellation-ring {
   z-index: 0;
+  inset: 58px;
   border: 1px solid color-mix(in srgb, var(--blue), transparent 84%);
   border-radius: 50%;
-}
-
-.constellation-ring-one {
-  inset: 62px 28px;
-  transform: rotate(-18deg);
-}
-
-.constellation-ring-two {
-  inset: 28px 74px;
-  transform: rotate(24deg);
 }
 
 @keyframes project-orbit {
@@ -449,14 +449,6 @@ li {
   to { offset-distance: 100%; }
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 18px 0 92px;
-}
-
-.stats div,
 .about {
   border: 1px solid var(--line);
   border-radius: 30px;
@@ -465,32 +457,9 @@ li {
   backdrop-filter: blur(20px);
 }
 
-.stats div {
-  padding: 28px;
-}
-
-.stats strong,
-.stats span {
-  display: block;
-}
-
-.stats strong {
-  margin-bottom: 10px;
-  font-size: 46px;
-  font-weight: 850;
-  letter-spacing: -0.045em;
-  line-height: 1.1;
-}
-
-.stats span {
-  color: var(--muted);
-  font-size: 16px;
-  font-weight: 700;
-}
-
 .content-section {
   scroll-margin-top: 24px;
-  margin-top: 92px;
+  margin-top: 110px;
 }
 
 .section-heading {
@@ -957,8 +926,8 @@ li {
 
 .journey-org {
   color: color-mix(in srgb, var(--accent), var(--ink) 28%);
-  font-size: 15px;
-  font-weight: 850;
+  font-size: 19px;
+  font-weight: 900;
 }
 
 .journey-coursework {
@@ -1079,10 +1048,6 @@ li {
     margin-top: 36px;
   }
 
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1149,14 +1114,9 @@ li {
     transform: scale(0.9);
   }
 
-  .stats,
   .project-grid,
   .stack-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stats {
-    margin-bottom: 70px;
   }
 
   .project-card-featured {

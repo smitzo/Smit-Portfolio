@@ -47,8 +47,7 @@ export function HeroSystemGraphic({ projects }) {
           <span>{linkedProjects.length}</span>
           <small>projects</small>
         </a>
-        <div className="constellation-ring constellation-ring-one" />
-        <div className="constellation-ring constellation-ring-two" />
+        <div className="constellation-ring" aria-hidden="true" />
       </div>
     </aside>
   );
