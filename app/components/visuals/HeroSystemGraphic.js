@@ -15,34 +15,37 @@ export function HeroSystemGraphic({ projects }) {
   return (
     <aside className="hero-card" aria-label="Selected project constellation">
       <div className="tech-constellation">
-        {linkedProjects.map((project, index) => {
-          const Icon = project.icon;
-          const orbitDuration = 32;
+        <div className="constellation-wheel">
+          {linkedProjects.map((project, index) => {
+            const Icon = project.icon;
+            const angle = index * (360 / linkedProjects.length);
 
-          return (
-            <div
-              className="constellation-orbit"
-              style={{
-                "--accent": accents[index % accents.length],
-                "--orbit-delay": `${-(index * orbitDuration) / linkedProjects.length}s`,
-              }}
-              key={project.title}
-            >
-              <a
-                className="constellation-item"
-                href={project.githubHref}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${project.title} on GitHub`}
+            return (
+              <div
+                className="constellation-slot"
+                style={{
+                  "--accent": accents[index % accents.length],
+                  "--slot-angle": `${angle}deg`,
+                  "--slot-inverse": `${-angle}deg`,
+                }}
+                key={project.title}
               >
-                <span className="constellation-icon" aria-hidden="true">
-                  <Icon size={32} />
-                </span>
-                <span className="constellation-name">{project.title}</span>
-              </a>
-            </div>
-          );
-        })}
+                <a
+                  className="constellation-item"
+                  href={project.githubHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${project.title} on GitHub`}
+                >
+                  <span className="constellation-icon" aria-hidden="true">
+                    <Icon size={32} />
+                  </span>
+                  <span className="constellation-name">{project.title}</span>
+                </a>
+              </div>
+            );
+          })}
+        </div>
         <a className="constellation-center" href="#projects" aria-label="View all projects">
           <span>{linkedProjects.length}</span>
           <small>projects</small>
