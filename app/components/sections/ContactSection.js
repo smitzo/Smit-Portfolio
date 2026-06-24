@@ -16,7 +16,7 @@ export function ContactSection({ profile }) {
         </p>
       </div>
       <div className="about-links">
-        <a className="button button-primary" href={`mailto:${profile.email}`}>
+        <a className="button button-ghost" href={`mailto:${profile.email}`}>
           <Mail size={18} />
           Email me
         </a>

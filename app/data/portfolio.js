@@ -43,8 +43,7 @@ export const projects = [
     state: "completed",
     rating: 3,
     githubHref: "https://github.com/smitzo/FuelUp",
-    liveHref: "",
-    reserveLiveLink: true,
+    href: "https://fuel-up-sigma.vercel.app/",
     summary: "Route and fuel-stop planning for U.S. truckers with cost-aware recommendations and map visualization.",
     description:
       "Full-stack route planner that compares route alternatives and recommends fuel stops using station prices, vehicle range, and trip constraints, with Redis-backed caching and interactive map visualization.",
