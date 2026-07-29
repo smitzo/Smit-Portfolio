@@ -1,21 +1,14 @@
-import { Poppins } from "next/font/google";
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Smit Joshi | Software Developer",
+  title: "Smit Joshi | Backend & AI Engineer",
   description:
-    "Portfolio of Smit Joshi, a software developer building Python based apps, interested in automation workflows, and analytics.",
+    "Smit Joshi builds reliable backend systems, data-intensive products, and practical AI workflows.",
   openGraph: {
-    title: "Smit Joshi | Software Developer",
+    title: "Smit Joshi | Backend & AI Engineer",
     description:
-      "Interested in Python based apps, automation workflows, and analytics.",
+      "Backend systems, data-intensive products, and practical AI workflows.",
     images: ["/hero-systems.png"],
     type: "website"
   }
@@ -37,7 +30,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={poppins.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

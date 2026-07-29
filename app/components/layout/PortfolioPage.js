@@ -1,8 +1,9 @@
 "use client";
 
-import { navItems, profile, projects, skills, timeline } from "../../data/portfolio";
+import { hobbies, navItems, profile, projects, skills, timeline } from "../../data/portfolio";
 import { SiteHeader } from "./SiteHeader";
 import { ContactSection } from "../sections/ContactSection";
+import { HobbiesSection } from "../sections/HobbiesSection";
 import { HeroSection } from "../sections/HeroSection";
 import { StackSection } from "../sections/StackSection";
 import { TimelineSection } from "../sections/TimelineSection";
@@ -14,6 +15,7 @@ export function PortfolioPage() {
       <HeroSection profile={profile} projects={projects} />
       <TimelineSection timeline={timeline} projects={projects} />
       <StackSection skills={skills} />
+      <HobbiesSection hobbies={hobbies} />
       <ContactSection profile={profile} />
     </main>
   );

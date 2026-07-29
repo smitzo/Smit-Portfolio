@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { KanbanBoard } from "../projects/KanbanBoard";
 import { GithubLogo } from "../ui/BrandLogos";
 
-const journeyAccents = ["#007aff", "#5856d6", "#00a6a6", "#af52de"];
+const journeyAccents = ["#6d5dfc", "#0c8ea0", "#337d5d", "#9b663d"];
 
 function formatDuration(startDate, endDate) {
   const start = new Date(`${startDate}T00:00:00`);
@@ -33,7 +33,7 @@ function SectionHeading({ eyebrow, title, intro, id }) {
     <div className="section-heading">
       <p className="eyebrow">{eyebrow}</p>
       <h2 id={id}>{title}</h2>
-      <p>{intro}</p>
+      {intro ? <p>{intro}</p> : null}
     </div>
   );
 }
@@ -51,12 +51,9 @@ export function TimelineSection({ timeline, projects }) {
 
     const updateProgress = () => {
       const rect = journey.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const start = viewportHeight * 0.72;
-      const end = viewportHeight * 0.24;
-      const distance = rect.height + start - end;
-      const travelled = start - rect.top;
-      const value = Math.min(1, Math.max(0, travelled / distance));
+      const start = window.innerHeight * 0.72;
+      const distance = rect.height + start - window.innerHeight * 0.24;
+      const value = Math.min(1, Math.max(0, (start - rect.top) / distance));
 
       progress.style.transform = `scaleY(${value})`;
       frame = 0;
@@ -81,9 +78,8 @@ export function TimelineSection({ timeline, projects }) {
     <>
       <section className="content-section" id="experience" aria-labelledby="journey-title">
         <SectionHeading
-          eyebrow="Journey"
-          title="From engineering foundations to production systems."
-          intro="Education, freelance work, and Odoo product engineering form one continuous path through practical, correctness-focused software."
+          eyebrow="Experience"
+          title="From engineering projects to production software."
           id="journey-title"
         />
 
@@ -94,34 +90,26 @@ export function TimelineSection({ timeline, projects }) {
 
           {timeline.map((item, index) => {
             const Icon = item.icon;
-            const isEducation = item.state === "education";
             const duration = item.durationLabel || formatDuration(item.startDate, item.endDate);
 
             return (
               <article
-                className={`journey-entry ${index % 2 ? "journey-entry-right" : "journey-entry-left"}`}
-                id={isEducation ? "education" : undefined}
+                className="journey-entry"
+                id={item.state === "education" ? "education" : undefined}
                 style={{ "--accent": journeyAccents[index % journeyAccents.length] }}
                 key={`${item.years}-${item.title}`}
               >
                 <span className="journey-marker" aria-hidden="true">
-                  <Icon size={31} />
+                  <Icon size={22} />
                 </span>
 
-                <div className="journey-context">
-                  <p>Timeline chapter</p>
-                  <h3>{item.journeyLabel}</h3>
+                <div className="journey-meta">
+                  <strong>{item.years}</strong>
                   <span>{duration}</span>
                 </div>
 
                 <div className="journey-card">
-                  <div className="journey-card-top">
-                    <span className="journey-org">{item.org}</span>
-                    <span className="date-chip">
-                      <strong>{item.years}</strong>
-                      <small>{duration}</small>
-                    </span>
-                  </div>
+                  <p className="journey-org">{item.org}</p>
                   <h3>{item.title}</h3>
                   <p className="journey-summary">{item.description}</p>
 
@@ -131,7 +119,7 @@ export function TimelineSection({ timeline, projects }) {
 
                   {item.coursework ? (
                     <div className="journey-coursework">
-                      <p className="coursework-label">Relevant coursework</p>
+                      <p className="coursework-label">Coursework</p>
                       <ul className="coursework-list">
                         {item.coursework.map((subject) => <li key={subject}>{subject}</li>)}
                       </ul>
@@ -154,9 +142,9 @@ export function TimelineSection({ timeline, projects }) {
 
       <section className="content-section" id="projects" aria-labelledby="projects-title">
         <SectionHeading
-          eyebrow="Selected work"
-          title="Projects that solve a clear problem."
-          intro="A mix of shipped products and active builds."
+          eyebrow="Projects"
+          title="My Projects."
+          intro="Backend, data, and AI systems I have shipped or am actively building."
           id="projects-title"
         />
         <KanbanBoard items={projects} />

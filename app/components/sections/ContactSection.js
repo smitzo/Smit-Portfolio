@@ -1,19 +1,16 @@
 import { Mail, MapPin } from "lucide-react";
-import { GithubLogo, LinkedInLogo, XLogo } from "../ui/BrandLogos";
+import { GithubLogo, LinkedInLogo } from "../ui/BrandLogos";
 
 export function ContactSection({ profile }) {
   return (
     <footer className="about" id="contact" aria-labelledby="contact-title">
       <div>
-        <p className="eyebrow">About &amp; contact</p>
-        <h2 id="contact-title">Let&apos;s build something useful.</h2>
-        <p className="about-name">{profile.name}</p>
-        <p className="about-role">{profile.role}</p>
-        <p className="about-location"><MapPin size={16} />{profile.location}</p>
+        <p className="eyebrow">Contact</p>
+        <h2 id="contact-title">Get in touch.</h2>
         <p className="about-copy">
-          I enjoy backend systems where correctness matters: financial workflows,
-          integrations, automation, and data products that people can rely on.
+          For backend or applied AI work, email me or connect on LinkedIn.
         </p>
+        <p className="about-location"><MapPin size={16} />{profile.location}</p>
       </div>
       <div className="about-links">
         <a className="button button-ghost" href={`mailto:${profile.email}`}>
@@ -27,10 +24,6 @@ export function ContactSection({ profile }) {
         <a className="button button-ghost" href={profile.github} target="_blank" rel="noreferrer">
           <GithubLogo />
           GitHub
-        </a>
-        <a className="button button-ghost" href={profile.twitter} target="_blank" rel="noreferrer">
-          <XLogo/>
-          X
         </a>
       </div>
     </footer>

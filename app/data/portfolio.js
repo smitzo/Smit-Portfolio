@@ -1,18 +1,19 @@
 import {
+  BarChart3,
+  Bot,
   BriefcaseBusiness,
   Building2,
-  Bot,
   Code2,
   Database,
-  ChartNoAxesCombined,
-  ClipboardCopy,
   FileJson2,
   Fuel,
   GraduationCap,
   Handshake,
   Layers3,
-  Monitor,
-  Paintbrush,
+  Link2,
+  Network,
+  ShieldCheck,
+  Volleyball,
 } from "lucide-react";
 
 export const profile = {
@@ -21,241 +22,270 @@ export const profile = {
   location: "Gandhinagar, Gujarat, India",
   email: "joshismit2812@gmail.com",
   linkedin: "https://linkedin.com/in/smit-joshi-ab1062224",
-  twitter: "https://x.com/smitjoshi28",
   github: "https://github.com/smitzo",
-  odooGithub: "https://github.com/smjo-odoo"
+  odooGithub: "https://github.com/smjo-odoo",
+  image: "/images/smit-joshi.png",
 };
 
 export const navItems = [
   ["Experience", "#experience"],
   ["Projects", "#projects"],
-  ["Education", "#education"],
   ["Stack", "#stack"],
+  ["Hobbies", "#hobbies"],
   ["Contact", "#contact"],
 ];
 
-export const projects = [
-  {
+/*
+ * Project content and display order are intentionally separate. Reorder the
+ * keys in projectOrder without moving or duplicating project details.
+ */
+export const projectCatalog = {
+  databoom: {
+    title: "DataBoom",
+    icon: Network,
+    eyebrow: "Synthetic data platform",
+    status: "Active build",
+    state: "progress",
+    featured: true,
+    accent: "#6d5dfc",
+    githubHref: "https://github.com/smitzo/DataBoom",
+    description:
+      "A synthetic data platform for relational, document, and graph datasets. It preserves keys and relationships, supports deterministic runs and validation, and keeps AI-assisted plans reviewable before generation.",
+    tags: ["Python", "FastAPI", "PostgreSQL", "Next.js", "LLM workflows"],
+  },
+   urlShortener: {
+    title: "URL Shortener",
+    icon: Link2,
+    eyebrow: "Production-minded link service",
+    status: "Active build",
+    state: "progress",
+    accent: "#0c8ea0",
+    githubHref: "https://github.com/smitzo/URL-Shortner",
+    description:
+      "A full-stack URL shortener with custom codes, safe-target checks, protected click analytics, CSV exports, audit history, rate limits, and a Dockerized PostgreSQL runtime.",
+    tags: ["Node.js", "Express", "TypeScript", "Prisma", "PostgreSQL"],
+  },
+  fuelUp: {
     title: "Fuel Up",
     icon: Fuel,
     eyebrow: "Fuel and route planner",
-    status: "Completed",
+    status: "Shipped",
     state: "completed",
-    rating: 3,
+    accent: "#c16b2f",
     githubHref: "https://github.com/smitzo/FuelUp",
-    href: "https://fuel-up-sigma.vercel.app/",
-    summary: "Route and fuel-stop planning for U.S. truckers with cost-aware recommendations and map visualization.",
+    liveHref: "https://fuel-up-sigma.vercel.app/",
     description:
-      "Full-stack route planner that compares route alternatives and recommends fuel stops using station prices, vehicle range, and trip constraints, with Redis-backed caching and interactive map visualization.",
-    tags: ["Django", "Next.js", "TypeScript", "Redis", "Python", "Docker"]
+      "A route planner for U.S. truckers that compares routes and recommends fuel stops using station prices, vehicle range, and trip constraints, with Redis caching and map visualization.",
+    tags: ["Django", "Next.js", "TypeScript", "Redis", "Docker"],
   },
-  {
+  financeAgent: {
     title: "Finance Agent",
     icon: Bot,
-    eyebrow: "Multi-tenant finance platform",
-    status: "Work in progress",
+    eyebrow: "Freight-bill validation",
+    status: "In progress",
     state: "progress",
-    href: "https://github.com/smitzo/Finance_Agent",
-    action: "View GitHub",
-    summary: "Multi-tenant finance app for freight bill validation, contract checks, and audit-ready billing workflows.",
+    accent: "#337d5d",
+    githubHref: "https://github.com/smitzo/Finance_Agent",
     description:
-      "Work-in-progress platform designed for multiple tenants to validate carrier freight bills against contracts, shipments, and bills of lading with deterministic financial checks and audit-friendly output.",
-    tags: ["FastAPI", "Postgres", "REST APIs", "LangGraph", "Neo4j", "Python"]
+      "A multi-tenant finance platform for validating carrier bills against contracts, shipments, and bills of lading through deterministic checks and audit-friendly workflows.",
+    tags: ["FastAPI", "PostgreSQL", "LangGraph", "Neo4j", "Python"],
   },
-  {
+  clipboard: {
     title: "Clipboard",
-    icon: ClipboardCopy,
-    eyebrow: "Online clipboard",
-    status: "Deployed",
+    icon: ShieldCheck,
+    eyebrow: "Cross-device text sharing",
+    status: "Live",
     state: "completed",
-    href: "https://clipboard-theta-eight.vercel.app",
+    accent: "#3478c9",
     githubHref: "https://github.com/smitzo/clipboard",
-    action: "Live link",
-    summary: "A secure online clipboard for moving text between devices.",
+    liveHref: "https://clipboard-theta-eight.vercel.app",
     description:
-      "A user pastes text, creates a temporary room, and shares the generated room ID or QR code with another device. The receiving device joins the room, reads the text, copies it, updates it, or deletes the room when finished.",
-    tags: ["Node.js", "React", "WebSockets"]
+      "A temporary-room clipboard for moving text between devices. Room IDs and QR codes make joining quick, while participants can copy, update, or delete shared content.",
+    tags: ["Node.js", "React", "WebSockets"],
   },
-  {
-    title: "Employee Data Analytics App",
-    icon: ChartNoAxesCombined,
-    eyebrow: "Delivered",
-    status: "Deployed",
+  employeeAnalytics: {
+    title: "Workpulse",
+    icon: BarChart3,
+    eyebrow: "Operational reporting",
+    status: "Live",
     state: "completed",
-    href: "https://employee-data-analytics-app.vercel.app/",
+    accent: "#a14875",
     githubHref: "https://github.com/smitzo/Employee-Data-Analytics-App",
-    action: "View GitHub",
-    summary: "Employee Performance analytics with filters, drilldowns, and reporting views.",
+    liveHref: "https://employee-data-analytics-app.vercel.app/",
     description:
-      "Analytics app for reviewing employee performance data with filtering, drill-down analysis, and clear reporting flows for structured spreadsheets.",
-    tags: ["Django", "Next.js", "Postgres", "SQLite", "Python"]
+      "An analytics application for exploring employee performance data through filters, drill-down views, and reporting flows built around structured spreadsheets.",
+    tags: ["Django", "Next.js", "PostgreSQL", "Python"],
   },
-  {
-    title: "Claim Processing Pipeline",
+  claimProcessor: {
+    title: "Mediclaim OS",
     icon: FileJson2,
     eyebrow: "Document automation",
     status: "Delivered",
     state: "completed",
-    href: "https://github.com/smitzo/Document-Processor",
-    action: "View GitHub",
-    summary: "Medical claim PDFs are classified, routed through extraction steps, and merged into one JSON response.",
+    accent: "#7654b4",
+    githubHref: "https://github.com/smitzo/Document-Processor",
     description:
-      "Service for medical claim PDF processing. It classifies each page into document types, sends only relevant pages through dedicated extraction steps, and aggregates the result into a single API response.",
-    tags: ["FastAPI", "LangGraph", "Python"]
+      "A medical-claim PDF service that classifies pages, routes relevant content through dedicated extraction steps, and returns one structured JSON response.",
+    tags: ["FastAPI", "LangGraph", "Python"],
   },
-  {
+
+  paintCostAnalytics: {
     title: "Paint Cost Analytics Tool",
-    icon: Paintbrush,
+    icon: BarChart3,
     eyebrow: "Manufacturing analytics",
     status: "Delivered",
     state: "completed",
-    href: "https://github.com/smitzo/Paint-Cost-Analysis-Tool",
-    action: "View GitHub",
-    summary: "Manufacturing profitability analysis from Excel sheets for paint cost and margin visibility.",
+    accent: "#9b663d",
+    githubHref: "https://github.com/smitzo/Paint-Cost-Analysis-Tool",
     description:
-      "Built for a manufacturing firm to understand paint profitability from Excel sheets, compare costs, and make margin visibility easier for operators.",
-    tags: ["Python", "Pandas", "openpyxl", "Tkinter"]
+      "A manufacturing profitability tool that turns Excel sheets into paint-cost comparisons and clearer margin reporting for operators.",
+    tags: ["Python", "Pandas", "openpyxl", "Tkinter"],
   },
-  {
+  navijob: {
     title: "Navijob",
     icon: BriefcaseBusiness,
     eyebrow: "Job platform",
-    status: "Work in progress",
+    status: "In progress",
     state: "progress",
-    summary: "Job platform planned for role discovery, saved opportunities, and application tracking.",
+    accent: "#3b7195",
     description:
-      "Work-in-progress job platform planned with a Next.js frontend and Django backend for candidate-focused search and application workflows.",
-    tags: ["Django", "Next.js", "Postgres", "Python"]
-  }
+      "A candidate-focused job platform for role discovery, saved opportunities, and application workflows.",
+    tags: ["Django", "Next.js", "PostgreSQL", "Python"],
+  },
+};
+
+export const projectOrder = [
+  "databoom",
+  "fuelUp",
+  "financeAgent",
+  "claimProcessor",
+  "employeeAnalytics",
+  "clipboard",
+  "urlShortener",
+  // "paintCostAnalytics",
+  // "navijob",
 ];
 
-const contributionBullets = [
-  "Build Python backend services, REST APIs, and ORM-driven business logic for Accounting and Invoicing products",
-  "Work on E-invoice, tax report computation, compliance workflows, validation rules, and third-party integrations",
-  "Implemented E-invoicing flow for Greek B2G E-invoices",
-  "Participated in debugging, documentation, and Unit testing with cross-functional teams"
-];
+export const projects = projectOrder.map((key) => ({
+  id: key,
+  ...projectCatalog[key],
+}));
 
 export const timeline = [
   {
     years: "Jul 2025 - Present",
     startDate: "2025-07-01",
     endDate: null,
-    journeyLabel: "Professional / Full-time Experience",
-    title: "Software Developer, R&D Accounting & Invoicing",
-    org: "Odoo",
-    meta: "Odoo",
-    status: "Current role",
+    title: "Software Developer",
+    org: "Odoo - R&D Accounting & Invoicing",
     state: "progress",
-    summary: "Backend accounting and invoicing product work across Python services, APIs, taxes, and compliance.",
     description:
-      "Current R&D engineering role focused on correctness-heavy accounting and invoicing backend systems, including API integrations, business logic, validation, and compliance workflows.",
+      "Backend product engineering across accounting, invoicing, tax, and compliance systems.",
     icon: BriefcaseBusiness,
-    tone: "purple",
-    visual: "api",
-    points: contributionBullets,
+    points: [
+      "Build Python services, REST APIs, and ORM-backed business logic",
+      "Work on e-invoicing, tax reports, validation, and third-party integrations",
+      "Implemented the Greek B2G e-invoicing flow",
+      "Contribute tests, debugging, and technical documentation",
+    ],
     href: profile.odooGithub,
-    // openSourceProfile: "smjo-odoo",
-    action: "Open-source contributions"
+    action: "Open-source contributions",
   },
   {
     years: "Jan 2025 - Jul 2025",
     startDate: "2025-01-01",
     endDate: "2025-07-01",
-    journeyLabel: "Internship Experience",
-    title: "Software Development Intern, R&D Accounting & Invoicing",
-    org: "Odoo",
-    meta: "Odoo",
-    status: "Completed role",
+    title: "Software Development Intern",
+    org: "Odoo — R&D Accounting & Invoicing",
     state: "completed",
-    summary: "Internship work across Helpdesk, Sales, Invoicing, GST flows, tests, and product fixes.",
     description:
-      "R&D internship building and testing Odoo accounting and invoicing customizations while contributing to integrated product workflows.",
+      "Product development and testing across integrated Odoo business workflows.",
     icon: Building2,
-    tone: "violet",
-    visual: "workflow",
     points: [
-      "Integrated Helpdesk, Sales, and Invoicing workflows for invoicing solved helpdesk tickets",
-      "Built Odoo customizations for accounting and invoicing use cases",
+      "Integrated Helpdesk, Sales, and Invoicing workflows",
+      "Built accounting and invoicing customizations",
       "Implemented GST localization flows for Indian users",
-      "Contributed to testing, issue triage, and product fixes"
-    ]
+      "Contributed to testing, triage, and product fixes",
+    ],
   },
   {
     years: "Oct 2024 - Jan 2025",
     startDate: "2024-10-01",
     endDate: "2025-01-01",
-    journeyLabel: "Freelance Experience",
-    title: "Freelance Backend & Analytics Developer",
-    org: "Freelance work",
-    meta: "Freelance work",
-    status: "Completed work",
+    title: "Backend & Analytics Developer",
+    org: "Freelance",
     state: "completed",
-    summary: "Freelance backend and analytics systems for spreadsheet-heavy operational teams.",
     description:
-      "Freelance work turning spreadsheet-heavy workflows into backend-supported analytics and reporting tools.",
+      "Backend-supported analytics for spreadsheet-heavy operational teams.",
     icon: Handshake,
-    tone: "cyan",
-    visual: "bars",
     points: [
-      "Built employee analytics app for a manufacturing firm",
-      "Built paint cost analytics app for manufacturing profitability",
-    ]
+      "Built employee-performance analytics for a manufacturing firm",
+      "Built paint-cost and profitability reporting workflows",
+    ],
   },
   {
     years: "2021 - 2025",
     startDate: "2021-08-01",
     endDate: "2025-05-01",
     durationLabel: "4 years",
-    journeyLabel: "College Education",
     title: "B.E. Computer Engineering",
     org: "G H Patel College of Engineering & Technology",
-    meta: "G H Patel College of Engineering & Technology",
-    status: "Education",
     state: "education",
-    summary: "Computer Engineering degree with hackathon, robotics, and grant-backed prototype experience.",
     description:
-      "Computer Engineering foundation with project-heavy work across hackathons, robotics, and grant-supported prototyping.",
+      "A project-led computer engineering foundation across software, robotics, and applied research.",
     icon: GraduationCap,
-    iconSize: 34,
-    tone: "blue",
-    visual: "orbit",
     points: [
-      "Computer Engineering with CGPA 8.19/10",
-      "Smart India Hackathon 2023 finalist",
-      "Robofest 3.0 finalist",
+      "CGPA 8.19/10",
+      "Smart India Hackathon 2023 and Robofest 3.0 finalist",
       "GUJCOST grant recipient for a self-balancing robot prototype",
-      "Mentored under ICREATE Idea Accelerator - an incubator for pre-seed startups",
-      "Represented CVM university at Inter-university Volleyball tournament"
+      "Mentored through the iCreate Idea Accelerator, an incubator for startups",
     ],
-    coursework: ["Operating Systems", "Data Structures & Algorithms", "Computer Networks", "Databases", "Natural Language Processing", "Big Data Analytics", "ML Fundamentals", "IoT"]
-  }
+    coursework: [
+      "Data Structures & Algorithms",
+      "Operating Systems",
+      "Computer Networks",
+      "Databases",
+      "Machine Learning",
+      "NLP",
+      "Big Data Analytics",
+    ],
+  },
 ];
 
 export const skills = [
   {
-    title: "Backend",
+    title: "Backend systems",
     icon: Code2,
-    items: ["Python", "Node.js", "FastAPI", "REST APIs", "Flask", "Django", "Pydantic", "SQLAlchemy"]
+    featured: true,
+    items: ["Python", "FastAPI", "Django", "Node.js", "REST APIs", "Odoo", "Pydantic", "SQLAlchemy"],
   },
   {
-    title: "Data Layer",
-    icon: Database,
-    items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "SQL", "Cypher"]
-  },
-  {
-    title: "Infrastructure & Tooling",
-    icon: Layers3,
-    items: ["Linux", "Git", "Docker", "GCP", "GitHub Actions", "AWS S3", "AWS EC2"]
-  },
-  {
-    title: "AI",
+    title: "AI engineering",
     icon: Bot,
-    items: ["LangChain", "LangGraph", "RAG", "Prompt Engineering"]
+    featured: true,
+    items: ["LangGraph", "LangChain", "RAG", "Prompt design", "Structured outputs"],
   },
   {
-    title: "Frontend",
-    icon: Monitor,
-    items: ["JavaScript", "TypeScript", "React", "Next.js"]
+    title: "Data & storage",
+    icon: Database,
+    items: ["PostgreSQL", "Redis", "MongoDB", "Neo4j", "MySQL", "SQL", "Cypher"],
+  },
+  {
+    title: "Delivery",
+    icon: Layers3,
+    items: ["Docker", "Linux", "Git", "GitHub Actions", "GCP", "AWS", "TypeScript", "Next.js"],
+  },
+];
+
+export const hobbies = [
+  {
+    title: "Sports, music & exploration",
+    icon: Volleyball,
+    interests: [
+      "Volleyball",
+      "Table tennis",
+      "MMA Beginner",
+      "Musical instruments",
+    ],
   },
 ];
