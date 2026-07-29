@@ -4,6 +4,7 @@ export function SiteHeader({ navItems }) {
   return (
     <header className="top-controls" aria-label="Primary navigation">
       <a className="wordmark" href="#top" aria-label="Smit Joshi home">
+        <span aria-hidden="true">SJ</span>
         Smit Joshi
       </a>
       <nav className="nav-links">
@@ -14,10 +15,7 @@ export function SiteHeader({ navItems }) {
         ))}
       </nav>
       <div className="header-actions">
-        <a className="availability" href="#contact">
-          <span aria-hidden="true" />
-          Available to connect
-        </a>
+        <a className="header-contact" href="#contact">Let&apos;s talk</a>
         <ThemeToggle />
       </div>
     </header>
