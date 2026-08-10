@@ -11,8 +11,11 @@ import {
   Handshake,
   Layers3,
   Link2,
+  Lightbulb,
   Network,
   ShieldCheck,
+  Trophy,
+  UsersRound,
   Volleyball,
 } from "lucide-react";
 
@@ -29,6 +32,7 @@ export const profile = {
 
 export const navItems = [
   ["Experience", "#experience"],
+  ["Achievements", "#achievements"],
   ["Projects", "#projects"],
   ["Stack", "#stack"],
   ["Hobbies", "#hobbies"],
@@ -46,7 +50,6 @@ export const projectCatalog = {
     eyebrow: "Synthetic data platform",
     status: "Active build",
     state: "progress",
-    featured: true,
     accent: "#6d5dfc",
     githubHref: "https://github.com/smitzo/DataBoom",
     description:
@@ -84,8 +87,10 @@ export const projectCatalog = {
     eyebrow: "Freight-bill validation",
     status: "In progress",
     state: "progress",
+    featured: true,
     accent: "#337d5d",
     githubHref: "https://github.com/smitzo/Finance_Agent",
+    liveHref: "https://freightflow-ai-steel.vercel.app",
     description:
       "A multi-tenant finance platform for validating carrier bills against contracts, shipments, and bills of lading through deterministic checks and audit-friendly workflows.",
     tags: ["FastAPI", "PostgreSQL", "LangGraph", "Neo4j", "Python"],
@@ -124,6 +129,7 @@ export const projectCatalog = {
     state: "completed",
     accent: "#7654b4",
     githubHref: "https://github.com/smitzo/Document-Processor",
+    liveHref: "",
     description:
       "A medical-claim PDF service that classifies pages, routes relevant content through dedicated extraction steps, and returns one structured JSON response.",
     tags: ["FastAPI", "LangGraph", "Python"],
@@ -155,11 +161,11 @@ export const projectCatalog = {
 };
 
 export const projectOrder = [
-  "databoom",
-  "fuelUp",
   "financeAgent",
   "claimProcessor",
+  "databoom",
   "employeeAnalytics",
+  "fuelUp",
   "clipboard",
   "urlShortener",
   // "paintCostAnalytics",
@@ -185,7 +191,7 @@ export const timeline = [
     points: [
       "Build Python services, REST APIs, and ORM-backed business logic",
       "Work on e-invoicing, tax reports, validation, and third-party integrations",
-      "Implemented the Greek B2G e-invoicing flow",
+      "Implemented B2G e-invoicing flow for Greek users",
       "Contribute tests, debugging, and technical documentation",
     ],
     href: profile.odooGithub,
@@ -202,9 +208,7 @@ export const timeline = [
       "Product development and testing across integrated Odoo business workflows.",
     icon: Building2,
     points: [
-      "Integrated Helpdesk, Sales, and Invoicing workflows",
       "Built accounting and invoicing customizations",
-      "Implemented GST localization flows for Indian users",
       "Contributed to testing, triage, and product fixes",
     ],
   },
@@ -219,8 +223,8 @@ export const timeline = [
       "Backend-supported analytics for spreadsheet-heavy operational teams.",
     icon: Handshake,
     points: [
-      "Built employee-performance analytics for a manufacturing firm",
-      "Built paint-cost and profitability reporting workflows",
+      "Built an employee management and analytics for a manufacturing firm",
+      "Built a paint-cost and profitability reporting tool for a manufacturing firm",
     ],
   },
   {
@@ -236,9 +240,7 @@ export const timeline = [
     icon: GraduationCap,
     points: [
       "CGPA 8.19/10",
-      "Smart India Hackathon 2023 and Robofest 3.0 finalist",
       "GUJCOST grant recipient for a self-balancing robot prototype",
-      "Mentored through the iCreate Idea Accelerator, an incubator for startups",
     ],
     coursework: [
       "Data Structures & Algorithms",
@@ -249,6 +251,84 @@ export const timeline = [
       "NLP",
       "Big Data Analytics",
     ],
+  },
+];
+
+export const achievements = [
+  {
+    year: "2023",
+    title: "Smart India Hackathon 2023 Finalist",
+    organization: "Smart India Hackathon",
+    category: "National hackathon",
+    description:
+      "Reached the finalist stage of Smart India Hackathon 2023 as part of a team solving a real-world problem through technology.",
+    icon: Trophy,
+    accent: "#6d5dfc",
+    tags: ["National finalist", "Team innovation", "Problem solving"],
+    href: "https://www.linkedin.com/posts/smit-joshi-ab1062224_smartindiahackathon2023-smartindiahackathon-ugcPost-7144565725276352512-_krg/",
+    action: "View SIH journey",
+  },
+  {
+    year: "2024",
+    title: "iCreate Idea Accelerator",
+    organization: "iCreate",
+    category: "Startup accelerator",
+    description:
+      "Selected for the iCreate Idea Accelerator Program and received structured mentorship for developing an early-stage technology idea.",
+    icon: Lightbulb,
+    accent: "#0c8ea0",
+    tags: ["Idea validation", "Startup mentorship", "Innovation"],
+    href: "https://www.linkedin.com/posts/smit-joshi-ab1062224_i-received-the-opportunity-of-having-a-1-share-7155177224197787649-4qfV/",
+    action: "View iCreate experience",
+  },
+  {
+    year: "2023",
+    title: "Robofest Gujarat 3.0 Finalist",
+    organization: "Gujarat Council on Science and Technology",
+    category: "National robotics competition",
+    description:
+      "Reached the Level 3 finalist stage of Robofest Gujarat 3.0 with a self-balancing robot prototype.",
+    icon: Bot,
+    accent: "#9b663d",
+    tags: ["Level 3 finalist", "Self-balancing robot", "Prototype engineering"],
+    href: "https://www.gcet.ac.in/achivement.php?year=MjAyMw%3D%3D",
+    action: "View GCET recognition",
+    platform: "Website",
+    secondaryHref: "https://x.com/InfoGujcost/status/1678354294230364161/photo/4",
+    secondaryAction: "Twitter post by GUJCOST",
+    secondaryPlatform: "X",
+  },
+  {
+    year: "2023",
+    title: "CSI GCET Core Team Member",
+    organization: "Computer Society of India — GCET Student Branch",
+    category: "Student leadership",
+    description:
+      "Selected for the CSI GCET core team, helping manage technical and non-technical events and organize hackathons for the campus community.",
+    icon: UsersRound,
+    accent: "#a14875",
+    tags: ["Event operations", "Hackathon organizing", "Team leadership"],
+    href: "https://www.instagram.com/p/Cwt-Fz2LbwH/",
+    action: "View CSI announcement",
+    platform: "Instagram",
+  },
+];
+
+export const achievementMoments = [
+  {
+    title: "Smart India Hackathon 2023",
+    detail: "Grand Finale team",
+    image: "/Smartindiahackathon.jpeg",
+    imageAlt:
+      "Smit Joshi and the Geeks of AI team at the Smart India Hackathon 2023 Grand Finale",
+    accent: "#6d5dfc",
+  },
+  {
+    title: "Robofest 3.0",
+    detail: "Finalist team",
+    image: "/robofest3.jpeg",
+    imageAlt: "Smit Joshi with his Robofest 3.0 finalist team",
+    accent: "#9b663d",
   },
 ];
 
@@ -281,6 +361,8 @@ export const hobbies = [
   {
     title: "Sports, music & exploration",
     icon: Volleyball,
+    description:
+      "I have captained a volleyball team and actively play table tennis and other sports to stay fresh, energetic, and lively.",
     interests: [
       "Volleyball",
       "Table tennis",

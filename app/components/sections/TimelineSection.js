@@ -38,7 +38,7 @@ function SectionHeading({ eyebrow, title, intro, id }) {
   );
 }
 
-export function TimelineSection({ timeline, projects }) {
+export function TimelineSection({ timeline }) {
   const journeyRef = useRef(null);
   const progressRef = useRef(null);
 
@@ -140,15 +140,20 @@ export function TimelineSection({ timeline, projects }) {
         </div>
       </section>
 
-      <section className="content-section" id="projects" aria-labelledby="projects-title">
-        <SectionHeading
-          eyebrow="Projects"
-          title="My Projects."
-          intro="Backend, data, and AI systems I have shipped or am actively building."
-          id="projects-title"
-        />
-        <KanbanBoard items={projects} />
-      </section>
     </>
+  );
+}
+
+export function ProjectsSection({ projects }) {
+  return (
+    <section className="content-section" id="projects" aria-labelledby="projects-title">
+      <SectionHeading
+        eyebrow="Projects"
+        title="My Projects."
+        intro="Backend, data, and AI systems I have shipped or am actively building."
+        id="projects-title"
+      />
+      <KanbanBoard items={projects} />
+    </section>
   );
 }

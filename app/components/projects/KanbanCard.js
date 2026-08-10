@@ -50,7 +50,7 @@ export function KanbanCard({ item, index = 0 }) {
           </span>
         )}
         {liveHref ? (
-          <a className="project-link project-link-secondary" href={liveHref} target="_blank" rel="noreferrer">
+          <a className="project-link" href={liveHref} target="_blank" rel="noreferrer">
             Live demo
             <ExternalLink size={15} aria-hidden="true" />
           </a>

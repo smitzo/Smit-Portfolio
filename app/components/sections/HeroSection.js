@@ -21,7 +21,7 @@ export function HeroSection({ profile, projects }) {
           </span>
           <p className="hero-intro">
             I&apos;m {profile.name}, a software developer at Odoo. I work on accounting
-            and invoicing backends, and build projects around synthetic data,
+            and invoicing backends, and have built projects around Fin-tech,
             document processing, and automation.
           </p>
         </div>
