@@ -8,6 +8,10 @@ export function LinkedInLogo({ size = 18 }) {
   return <Image className="brand-logo" src="/brand/linkedin.svg" width={size} height={size} alt="" aria-hidden="true" />;
 }
 
+export function InstagramLogo({ size = 18 }) {
+  return <Image className="brand-logo" src="/brand/instagram.svg" width={size} height={size} alt="" aria-hidden="true" />;
+}
+
 export function XLogo({ size = 18 }) {
   return <Image className="brand-logo" src="/brand/x.svg" width={size} height={size} alt="" aria-hidden="true" />;
 }
