@@ -6,20 +6,18 @@ import { Moon, Sun } from "lucide-react";
 const STORAGE_KEY = "portfolio-theme";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const nextTheme = stored || preferred;
-    document.documentElement.dataset.theme = nextTheme;
-    const frame = window.requestAnimationFrame(() => setTheme(nextTheme));
+    const currentTheme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+    const frame = window.requestAnimationFrame(() => setTheme(currentTheme));
 
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
   function toggleTheme() {
-    const nextTheme = theme === "dark" ? "light" : "dark";
+    const currentTheme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     document.documentElement.dataset.theme = nextTheme;
     window.localStorage.setItem(STORAGE_KEY, nextTheme);

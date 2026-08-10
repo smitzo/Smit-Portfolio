@@ -1,34 +1,30 @@
-const accents = ["#6d5dfc", "#0c8ea0", "#337d5d", "#9b663d"];
+import { Fragment } from "react";
 
-export function StackSection({ skills }) {
+export function StackSection({ skills, profile }) {
   return (
     <section className="content-section" id="stack" aria-labelledby="stack-title">
-      <div className="section-heading section-heading-split">
-        <div>
-          <p className="eyebrow">Stack</p>
-          <h2 id="stack-title">Technical stack.</h2>
-        </div>
-        <p>
-          The languages, frameworks, databases, and delivery tools behind my work.
-        </p>
+      <div className="section-title">
+        <h2 id="stack-title">Tools I work with</h2>
+        <span aria-hidden="true" />
       </div>
       <div className="stack-grid">
-        {skills.map((group, index) => {
-          const Icon = group.icon;
-          return (
-            <article
-              className={`stack-card ${group.featured ? "stack-card-featured" : ""}`}
-              style={{ "--accent": accents[index % accents.length] }}
-              key={group.title}
-            >
-              <span className="stack-icon"><Icon size={23} /></span>
-              <h3>{group.title}</h3>
-              <ul className="stack-list">
-                {group.items.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </article>
-          );
-        })}
+        {skills.map((group) => (
+          <article className="stack-group" key={group.title}>
+            <h3>{group.title}</h3>
+            <p>
+              {group.items.map((item, index) => (
+                <Fragment key={item}>
+                  {index > 0 ? ", " : null}
+                  {item === "Odoo" ? (
+                    <a className="inline-link" href={profile.odoo} target="_blank" rel="noreferrer">
+                      Odoo
+                    </a>
+                  ) : item}
+                </Fragment>
+              ))}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   );

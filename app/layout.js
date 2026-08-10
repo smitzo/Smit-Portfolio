@@ -9,7 +9,7 @@ export const metadata = {
     title: "Smit Joshi | Backend & AI Engineer",
     description:
       "Backend systems, data-intensive products, and practical AI workflows.",
-    images: ["/hero-systems.png"],
+    images: ["/portfolio-preview.png"],
     type: "website"
   }
 };
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
             __html: `(() => {
               try {
                 const stored = localStorage.getItem("portfolio-theme");
-                const theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                const theme = stored === "light" ? "light" : "dark";
                 document.documentElement.dataset.theme = theme;
               } catch {}
             })();`,

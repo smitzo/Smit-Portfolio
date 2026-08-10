@@ -1,24 +1,26 @@
 export function HobbiesSection({ hobbies }) {
   return (
-    <section className="content-section hobbies-section" id="hobbies" aria-labelledby="hobbies-title">
-      <div className="section-heading">
-        <p className="eyebrow">Beyond work</p>
-        <h2 id="hobbies-title">Away from the keyboard.</h2>
+    <section className="content-section" id="about" aria-labelledby="about-title">
+      <div className="section-title">
+        <h2 id="about-title">Beyond the keyboard</h2>
+        <span aria-hidden="true" />
       </div>
-
-      <div className="hobby-grid">
-        {hobbies.map(({ title, interests, icon: Icon }) => (
-          <article className="hobby-card" key={title}>
-            <span className="hobby-icon" aria-hidden="true"><Icon size={25} /></span>
-            <div className="hobby-card-content">
-              <h3>{title}</h3>
-              <ul className="hobby-list">
-                {interests.map((interest) => <li key={interest}>{interest}</li>)}
-              </ul>
-            </div>
-          </article>
-        ))}
-      </div>
+      {hobbies.map((hobby) => (
+        <div className="hobby-layout" key={hobby.title}>
+          <div className="hobby-copy">
+            <h3>{hobby.title}</h3>
+            <p>{hobby.description}</p>
+          </div>
+          <ul className="hobby-interests" aria-label="Interests">
+            {hobby.interests.map((interest, index) => (
+              <li key={interest}>
+                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                {interest}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </section>
   );
 }

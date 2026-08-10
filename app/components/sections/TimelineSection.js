@@ -1,154 +1,98 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { KanbanBoard } from "../projects/KanbanBoard";
 import { GithubLogo } from "../ui/BrandLogos";
-
-const journeyAccents = ["#6d5dfc", "#0c8ea0", "#337d5d", "#9b663d"];
 
 function formatDuration(startDate, endDate) {
   const start = new Date(`${startDate}T00:00:00`);
   const end = endDate ? new Date(`${endDate}T00:00:00`) : new Date();
-  let months = (end.getFullYear() - start.getFullYear()) * 12;
-  months += end.getMonth() - start.getMonth();
+  let totalMonths = (end.getFullYear() - start.getFullYear()) * 12;
+  totalMonths += end.getMonth() - start.getMonth();
 
-  if (end.getDate() < start.getDate()) months -= 1;
-  months = Math.max(0, months);
+  if (end.getDate() < start.getDate()) totalMonths -= 1;
+  totalMonths = Math.max(0, totalMonths);
 
-  const years = Math.floor(months / 12);
-  const remainingMonths = months % 12;
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
   const parts = [];
 
   if (years) parts.push(`${years} ${years === 1 ? "year" : "years"}`);
-  if (remainingMonths) {
-    parts.push(`${remainingMonths} ${remainingMonths === 1 ? "month" : "months"}`);
-  }
+  if (months) parts.push(`${months} ${months === 1 ? "month" : "months"}`);
 
   return parts.join(" ") || "Less than a month";
 }
 
-function SectionHeading({ eyebrow, title, intro, id }) {
+function Duration({ startDate, endDate }) {
+  const [duration, setDuration] = useState("");
+
+  useEffect(() => {
+    const updateDuration = () => setDuration(formatDuration(startDate, endDate));
+    updateDuration();
+    const timer = window.setInterval(updateDuration, 86_400_000);
+
+    return () => window.clearInterval(timer);
+  }, [startDate, endDate]);
+
+  return <small aria-live="polite">{duration}</small>;
+}
+
+function SectionTitle({ children, id }) {
   return (
-    <div className="section-heading">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 id={id}>{title}</h2>
-      {intro ? <p>{intro}</p> : null}
+    <div className="section-title">
+      <h2 id={id}>{children}</h2>
+      <span aria-hidden="true" />
     </div>
   );
 }
 
-export function TimelineSection({ timeline, projects }) {
-  const journeyRef = useRef(null);
-  const progressRef = useRef(null);
-
-  useEffect(() => {
-    const journey = journeyRef.current;
-    const progress = progressRef.current;
-    if (!journey || !progress) return;
-
-    let frame = 0;
-
-    const updateProgress = () => {
-      const rect = journey.getBoundingClientRect();
-      const start = window.innerHeight * 0.72;
-      const distance = rect.height + start - window.innerHeight * 0.24;
-      const value = Math.min(1, Math.max(0, (start - rect.top) / distance));
-
-      progress.style.transform = `scaleY(${value})`;
-      frame = 0;
-    };
-
-    const requestUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateProgress);
-    };
-
-    updateProgress();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
-
+export function TimelineSection({ timeline }) {
   return (
-    <>
-      <section className="content-section" id="experience" aria-labelledby="journey-title">
-        <SectionHeading
-          eyebrow="Experience"
-          title="From engineering projects to production software."
-          id="journey-title"
-        />
+    <section className="content-section" id="experience" aria-labelledby="experience-title">
+      <SectionTitle id="experience-title">Experience</SectionTitle>
+      <div className="experience-list">
+        {timeline.map((item) => (
+          <article className="experience-row" id={item.state === "education" ? "education" : undefined} key={`${item.years}-${item.title}`}>
+            <div className="experience-org">
+              {item.orgHref ? (
+                <a className="experience-company inline-link" href={item.orgHref} target="_blank" rel="noreferrer">
+                  {item.org}
+                </a>
+              ) : (
+                <strong className="experience-company">{item.org}</strong>
+              )}
+              {item.team ? <span className="experience-team">{item.team}</span> : null}
+            </div>
+            <div className="experience-copy">
+              <div className="experience-role-line">
+                <h3>{item.title}</h3>
+                {item.href ? (
+                  <a className="text-link github-link experience-source" href={item.href} target="_blank" rel="noreferrer">
+                    <GithubLogo size={15} /> {item.action} <span aria-hidden="true">↗</span>
+                  </a>
+                ) : null}
+              </div>
+              <p>{item.description}</p>
+              <ul>
+                {item.points.map((point) => <li key={point}>{point}</li>)}
+              </ul>
+            </div>
+            <p className="experience-date">
+              <span>{item.years}</span>
+              <Duration startDate={item.startDate} endDate={item.endDate} />
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-        <div className="journey" ref={journeyRef}>
-          <div className="journey-track" aria-hidden="true">
-            <span className="journey-progress" ref={progressRef} />
-          </div>
-
-          {timeline.map((item, index) => {
-            const Icon = item.icon;
-            const duration = item.durationLabel || formatDuration(item.startDate, item.endDate);
-
-            return (
-              <article
-                className="journey-entry"
-                id={item.state === "education" ? "education" : undefined}
-                style={{ "--accent": journeyAccents[index % journeyAccents.length] }}
-                key={`${item.years}-${item.title}`}
-              >
-                <span className="journey-marker" aria-hidden="true">
-                  <Icon size={22} />
-                </span>
-
-                <div className="journey-meta">
-                  <strong>{item.years}</strong>
-                  <span>{duration}</span>
-                </div>
-
-                <div className="journey-card">
-                  <p className="journey-org">{item.org}</p>
-                  <h3>{item.title}</h3>
-                  <p className="journey-summary">{item.description}</p>
-
-                  <ul className="highlight-list">
-                    {item.points.map((point) => <li key={point}>{point}</li>)}
-                  </ul>
-
-                  {item.coursework ? (
-                    <div className="journey-coursework">
-                      <p className="coursework-label">Coursework</p>
-                      <ul className="coursework-list">
-                        {item.coursework.map((subject) => <li key={subject}>{subject}</li>)}
-                      </ul>
-                    </div>
-                  ) : null}
-
-                  {item.href ? (
-                    <a className="text-link" href={item.href} target="_blank" rel="noreferrer">
-                      <GithubLogo size={16} />
-                      {item.action}
-                      <ArrowUpRight size={15} />
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="content-section" id="projects" aria-labelledby="projects-title">
-        <SectionHeading
-          eyebrow="Projects"
-          title="My Projects."
-          intro="Backend, data, and AI systems I have shipped or am actively building."
-          id="projects-title"
-        />
-        <KanbanBoard items={projects} />
-      </section>
-    </>
+export function ProjectsSection({ projects }) {
+  return (
+    <section className="content-section projects-section" id="projects" aria-labelledby="projects-title">
+      <SectionTitle id="projects-title">Selected work</SectionTitle>
+      <KanbanBoard items={projects} />
+    </section>
   );
 }
